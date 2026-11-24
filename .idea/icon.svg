@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <title>HiraLearn</title>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#f7f0e1"/>
+      <stop offset="1" stop-color="#e9dcc2"/>
+    </linearGradient>
+    <clipPath id="tile">
+      <rect x="4" y="4" width="120" height="120" rx="28"/>
+    </clipPath>
+  </defs>
+  <!-- Washi tile with the dashed centre cross of manuscript (practice) paper -->
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#paper)"/>
+  <path d="M64 0V128M0 64H128" clip-path="url(#tile)" stroke="#7a5a28" stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="4 4"/>
+  <!-- Hiragana "a" (あ) being traced: strokes 1 and 2 inked, the last stroke part ink, part faint outline -->
+  <g fill="none" stroke="#1e1d24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M78 58 C70 80 56 96 44 96 C34 96 32 84 40 76 C52 66 76 62 88 70 C100 78 96 96 76 102" stroke-width="8.5" stroke-opacity="0.16"/>
+    <path d="M36 44 C48 44 62 42 82 38" stroke-width="9"/>
+    <path d="M56 26 C55 46 56 74 64 98" stroke-width="9"/>
+    <path d="M78 58 C70 80 56 96 44 96 C34 96 32 84 40 76 C52 66 76 62 88 70 C100 78 96 96 76 102" stroke-width="8.5" pathLength="1" stroke-dasharray="0.62 1"/>
+  </g>
+</svg>

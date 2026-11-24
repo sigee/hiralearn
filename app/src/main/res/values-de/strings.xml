@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu">Menü</string>
+    <string name="back">Zurück</string>
+    <string name="kana_chart">Kana-Tabelle</string>
+    <string name="settings">Einstellungen</string>
+    <string name="inked_count">%1$d von %2$d in Tusche</string>
+    <string name="to_review">%d zu wiederholen</string>
+    <string name="review_hint">Beantworte sie jetzt, bevor sie dir entgleiten.</string>
+    <string name="review_now">Jetzt wiederholen</string>
+    <string name="all_caught_up">Alles erledigt</string>
+    <string name="first_kana_hint">Lerne deine ersten Kana, um mit dem Wiederholen zu beginnen.</string>
+    <string name="next_review_in">Nächste Wiederholung in %s.</string>
+    <string name="practice_anyway">Trotzdem üben</string>
+    <string name="practice_hint">Fehler holen Kana trotzdem früher zurück; richtige Antworten verschieben die nächste Wiederholung nicht.</string>
+    <string name="all_inked">Alle Hiragana sind in Tusche!</string>
+    <string name="keep_reviewing">Wiederhole weiter, damit die Tusche dunkel bleibt.</string>
+    <string name="next_lesson">Als Nächstes: %s</string>
+    <string name="learn_n_new">%d neue lernen</string>
+    <string name="duration_min">%d Min.</string>
+    <string name="duration_h_min">%1$d Std. %2$d Min.</string>
+    <string name="stage_new">neu</string>
+    <string name="stage_learning">am Lernen</string>
+    <string name="stage_familiar">vertraut</string>
+    <string name="stage_strong">gefestigt</string>
+    <string name="also_typed_as">auch getippt als %s</string>
+    <string name="stroke_order">Strichfolge</string>
+    <string name="not_learned_yet">Noch nicht gelernt: nur ein blasser Umriss.</string>
+    <string name="skill_reading">Lesen</string>
+    <string name="skill_writing">Schreiben</string>
+    <string name="skill_listening">Hören</string>
+    <string name="due_now">jetzt fällig</string>
+    <string name="next_review_in_short">nächste Wiederholung in %s</string>
+    <string name="level_line">Stufe %1$d von %2$d · %3$s\n%4$d richtig · %5$d falsch</string>
+    <string name="practise_writing">Schreiben üben</string>
+    <string name="free_practice">Freies Üben: ändert deinen Fortschritt nicht.</string>
+    <string name="show_guide">Vorlage zeigen</string>
+    <string name="clear">Löschen</string>
+    <string name="check">Prüfen</string>
+    <string name="looks_right">Sieht richtig aus!</string>
+    <string name="draw_order">Richtige Form, aber die Strichfolge stimmt nicht.</string>
+    <string name="draw_direction">Richtige Form, aber ein Strich geht in die falsche Richtung.</string>
+    <string name="draw_compare">Nicht ganz. Vergleiche mit der blauen Linie.</string>
+    <string name="draw_nice">Schön geschrieben.</string>
+    <string name="draw_shape">Das sieht noch nicht wie %s aus. Die blaue Linie zeigt, wie es aussehen sollte.</string>
+    <string name="nothing_learn">Du hast alle Hiragana gelernt!</string>
+    <string name="nothing_review">Gerade gibt es nichts zu wiederholen.</string>
+    <string name="nothing_practice">Lerne zuerst ein paar Kana, dann kannst du sie hier üben.</string>
+    <string name="new_kana">Neues Kana</string>
+    <string name="got_it">Verstanden</string>
+    <string name="yoon_explanation">%1$s (%2$s) + kleines %3$s (%4$s) → %5$s\nDas kleine Kana wird halb so groß unten links in sein Kästchen geschrieben.</string>
+    <string name="cant_draw">Kann gerade nicht zeichnen</string>
+    <string name="dont_know">Weiß ich nicht</string>
+    <string name="prompt_type">Tippe die Lesung</string>
+    <string name="prompt_reading_choice">Wie liest man das?</string>
+    <string name="prompt_writing_choice">Welches ist das?</string>
+    <string name="prompt_trace">Nachzeichnen</string>
+    <string name="prompt_write">Schreib es</string>
+    <string name="prompt_listening_choice">Welches hörst du?</string>
+    <string name="prompt_listening_write">Schreib, was du hörst</string>
+    <string name="play_sound">Ton abspielen</string>
+    <string name="reading_in_romaji">Lesung in Rōmaji</string>
+    <string name="correct">Richtig!</string>
+    <string name="not_quite">Nicht ganz</string>
+    <string name="kana_is">ist „%s“</string>
+    <string name="you_answered">Du hast %1$s (%2$s) geantwortet. Sie sehen sich ähnlich, deshalb kommen beide bald wieder.</string>
+    <string name="versus">vs</string>
+    <string name="i_was_right">Ich hatte recht</string>
+    <string name="continue_">Weiter</string>
+    <string name="lesson_complete">Lektion geschafft</string>
+    <string name="review_complete">Wiederholung geschafft</string>
+    <string name="practice_complete">Übung geschafft</string>
+    <string name="drill_complete">Übung geschafft</string>
+    <string name="nothing_drill">Gerade gibt es keine Verwechslungen zum Üben.</string>
+    <string name="confusions_title">Deine Verwechslungen</string>
+    <string name="confusions_hint">Diese Paare verwechselst du am häufigsten. Eine kurze Übung stellt sie direkt gegenüber.</string>
+    <string name="drill_these">Diese üben</string>
+    <string name="score">%1$d von %2$d richtig (%3$d%%)</string>
+    <string name="learned">Gelernt</string>
+    <string name="learned_hint">Sie kommen in ein paar Stunden zur Wiederholung zurück.</string>
+    <string name="needs_practice">Braucht mehr Übung</string>
+    <string name="needs_practice_hint">Diese werden früher wieder abgefragt.</string>
+    <string name="done">Fertig</string>
+    <string name="quit_session">Sitzung beenden</string>
+    <string name="undo_stroke">Strich rückgängig</string>
+    <string name="replay_stroke_order">Strichfolge erneut abspielen</string>
+    <string name="appearance">Darstellung</string>
+    <string name="theme_system">Wie das Telefon</string>
+    <string name="theme_paper">Papier</string>
+    <string name="theme_night">Nachttusche</string>
+    <string name="language">Sprache</string>
+    <string name="question_types">Fragetypen</string>
+    <string name="question_types_hint">Gilt für Wiederholen und Üben. Lesen braucht Auswahl oder Tippen, Schreiben braucht Auswahl oder Zeichnen; ein Schalter ist gesperrt, wenn danach nichts mehr abgefragt werden könnte.</string>
+    <string name="qt_choice">Auswahl</string>
+    <string name="qt_choice_hint">Wähle die Lesung oder das Kana aus vier Möglichkeiten.</string>
+    <string name="qt_typing">Tippen</string>
+    <string name="qt_typing_hint">Tippe die Lesung in Rōmaji.</string>
+    <string name="qt_drawing">Zeichnen</string>
+    <string name="qt_drawing_hint">Schreibe das Kana von Hand. Gilt auch fürs Nachzeichnen und Schreiben beim Lernen neuer Kana.</string>
+    <string name="qt_listening">Hören</string>
+    <string name="qt_listening_hint">Hör ein Kana und wähle oder schreibe es. Nutzt die japanische Sprachausgabe des Handys.</string>
+    <string name="no_japanese_voice">Auf diesem Handy gibt es keine japanische Sprachausgabe, deshalb ist Hören aus. Installiere eine und komm dann zurück.</string>
+    <string name="install_voice">Japanische Stimme installieren</string>
+    <string name="no_voice_settings">Keine Einstellungen für die Sprachausgabe auf diesem Handy gefunden.</string>
+    <string name="progress">Fortschritt</string>
+    <string name="progress_local">Dein Fortschritt wird nur auf diesem Gerät gespeichert.</string>
+    <string name="reset_all">Gesamten Fortschritt zurücksetzen</string>
+    <string name="developer">Entwickler (nur Debug-Versionen)</string>
+    <string name="developer_hint">Macht alle gelernten Kana sofort fällig, damit sich das Wiederholen ohne Warten testen lässt.</string>
+    <string name="make_all_due">Alle jetzt fällig machen</string>
+    <string name="demo_progress">Mit Demo-Fortschritt füllen</string>
+    <string name="about">Über</string>
+    <string name="app_version">Version %1$s</string>
+    <string name="about_text">Strichfolgen-Daten aus KanjiVG von Ulrich Apel (CC BY-SA 3.0). Schriften: Klee One, Noto Serif JP und Noto Serif (SIL Open Font License 1.1).</string>
+    <string name="licenses">Lizenzen</string>
+    <string name="licenses_strokes_title">Strichfolge</string>
+    <string name="licenses_strokes_text">Die Strichfolgen-Daten stammen aus KanjiVG von Ulrich Apel, lizenziert unter Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 3.0. Für diese App wurden sie von SVG-Pfaden in Punktlisten umgewandelt; die umgewandelten Daten stehen unter derselben Lizenz.</string>
+    <string name="licenses_fonts_title">Schriften</string>
+    <string name="licenses_fonts_text">Die App enthält Teilmengen dieser Schriften (nur die verwendeten Zeichen), lizenziert unter der SIL Open Font License 1.1.</string>
+    <string name="licenses_libraries_title">Open-Source-Bibliotheken</string>
+    <string name="licenses_libraries_text">Erstellt mit diesen Bibliotheken, lizenziert unter der Apache License 2.0.</string>
+    <string name="show_licence_text">Lizenztext anzeigen</string>
+    <string name="hide_licence_text">Lizenztext ausblenden</string>
+    <string name="licenses_english_note">Die Lizenztexte werden in ihrer englischen Originalfassung angezeigt.</string>
+    <string name="reset_title">Gesamten Fortschritt zurücksetzen?</string>
+    <string name="reset_text">Alle gelernten Kana und ihr Wiederholungsverlauf werden gelöscht. Das lässt sich nicht rückgängig machen.</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="words_title">Wörter</string>
+    <string name="words_hint">Echte Wörter aus den Kana, die du kennst: lies, schreib und hör sie. Verwechselte Kana kommen früher wieder.</string>
+    <string name="read_now">Starten</string>
+    <string name="prompt_word_choice">Wie liest man dieses Wort?</string>
+    <string name="prompt_word_type">Tippe die Lesung des Wortes</string>
+    <string name="word_means">bedeutet „%s“</string>
+    <string name="word_misread">Du hast %1$s (%2$s) als %3$s (%4$s) gelesen. Beide kommen bald wieder.</string>
+    <string name="prompt_word_write_choice">Wie schreibt man dieses Wort?</string>
+    <string name="prompt_word_write">Schreib dieses Wort</string>
+    <string name="prompt_word_listen_choice">Welches Wort hörst du?</string>
+    <string name="prompt_word_listen_write">Schreib das Wort, das du hörst</string>
+    <string name="word_mixed_up">%1$s (%2$s) wurde mit %3$s (%4$s) verwechselt. Beide kommen bald wieder.</string>
+    <string name="word_next_kana">Nächstes Kana</string>
+    <string name="word_kana_cell">Kana %1$d von %2$d</string>
+    <string name="words_complete">Wörter geschafft</string>
+    <string name="words_read">Auf Anhieb richtig</string>
+    <string name="nothing_words">Schließe deine erste Lektion ab, dann gibt es Wörter zu lesen.</string>
+    <string name="new_words">Neue Wörter zum Lesen</string>
+    <string name="read_them_now">Jetzt lesen</string>
+    <plurals name="words_available">
+        <item quantity="one">%d Wort kannst du schon lesen</item>
+        <item quantity="other">%d Wörter kannst du schon lesen</item>
+    </plurals>
+    <plurals name="draw_stroke_count">
+        <item quantity="one">%1$s hat %2$d Strich, du hast %3$d gezeichnet.</item>
+        <item quantity="other">%1$s hat %2$d Striche, du hast %3$d gezeichnet.</item>
+    </plurals>
+    <plurals name="mixed_up_count">
+        <item quantity="one">einmal verwechselt</item>
+        <item quantity="other">%d-mal verwechselt</item>
+    </plurals>
+    <plurals name="duration_days">
+        <item quantity="one">%d Tag</item>
+        <item quantity="other">%d Tagen</item>
+    </plurals>
+    <plurals name="cards_due_now">
+        <item quantity="one">%d Karte ist jetzt fällig</item>
+        <item quantity="other">%d Karten sind jetzt fällig</item>
+    </plurals>
+    <string-array name="lesson_titles">
+        <item>Vokale</item>
+        <item>K-Reihe</item>
+        <item>S-Reihe</item>
+        <item>T-Reihe</item>
+        <item>N-Reihe</item>
+        <item>H-Reihe</item>
+        <item>M-Reihe</item>
+        <item>Y-Reihe</item>
+        <item>R-Reihe</item>
+        <item>W-Reihe &amp; N</item>
+        <item>G-Reihe</item>
+        <item>Z-Reihe</item>
+        <item>D-Reihe</item>
+        <item>B-Reihe</item>
+        <item>P-Reihe</item>
+        <item>KY &amp; SH</item>
+        <item>CH &amp; NY</item>
+        <item>HY &amp; MY</item>
+        <item>RY &amp; GY</item>
+        <item>J &amp; BY</item>
+        <item>PY</item>
+    </string-array>
+    <string-array name="group_titles">
+        <item>Grundlegende Hiragana</item>
+        <item>Dakuten &amp; Handakuten</item>
+        <item>Kombinationen (Yōon)</item>
+    </string-array>
+
+    <!-- Daily review reminder -->
+    <string name="reminder">Tägliche Erinnerung</string>
+    <string name="reminder_switch">Ans Wiederholen erinnern</string>
+    <string name="reminder_hint">Eine Benachrichtigung zu dieser Uhrzeit, wenn Kana fällig sind. Wenn du alles erledigt hast, kommt nichts.</string>
+    <string name="reminder_time">Uhrzeit</string>
+    <string name="reminder_blocked">Benachrichtigungen für HiraLearn sind ausgeschaltet, daher kann keine Erinnerung erscheinen.</string>
+    <string name="open_notification_settings">Benachrichtigungseinstellungen öffnen</string>
+    <string name="ok">OK</string>
+    <string name="reminder_channel">Wiederholungs-Erinnerungen</string>
+    <string name="reminder_channel_desc">Ein täglicher Hinweis, wenn Kana zum Wiederholen fällig sind.</string>
+    <plurals name="reminder_title">
+        <item quantity="one">%d Kana wartet auf dich</item>
+        <item quantity="other">%d Kana warten auf dich</item>
+    </plurals>
+    <string name="reminder_text">Wiederhole sie jetzt, bevor sie dir entgleiten.</string>
+    <!-- Word meanings for "Read words", by word id (core Words.kt). -->
+    <string name="word_ai">Liebe</string>
+    <string name="word_ie">Haus</string>
+    <string name="word_ue">oben</string>
+    <string name="word_ao">Blau</string>
+    <string name="word_iie">nein</string>
+    <string name="word_aka">Rot</string>
+    <string name="word_aki">Herbst</string>
+    <string name="word_eki">Bahnhof</string>
+    <string name="word_kao">Gesicht</string>
+    <string name="word_koe">Stimme</string>
+    <string name="word_ike">Teich</string>
+    <string name="word_koko">hier</string>
+    <string name="word_kuuki">Luft</string>
+    <string name="word_kikai">Maschine</string>
+    <string name="word_oka">Hügel</string>
+    <string name="word_sushi">Sushi</string>
+    <string name="word_asa">Morgen</string>
+    <string name="word_isu">Stuhl</string>
+    <string name="word_ushi">Kuh</string>
+    <string name="word_shio">Salz</string>
+    <string name="word_kasa">Regenschirm</string>
+    <string name="word_ashi">Fuß, Bein</string>
+    <string name="word_sekai">Welt</string>
+    <string name="word_okashi">Süßigkeiten</string>
+    <string name="word_suika">Wassermelone</string>
+    <string name="word_soko">dort</string>
+    <string name="word_tako">Krake</string>
+    <string name="word_kutsu">Schuhe</string>
+    <string name="word_tsukue">Schreibtisch</string>
+    <string name="word_kuchi">Mund</string>
+    <string name="word_tsuki">Mond</string>
+    <string name="word_soto">draußen</string>
+    <string name="word_tokei">Uhr</string>
+    <string name="word_taiko">Trommel</string>
+    <string name="word_chikatetsu">U-Bahn</string>
+    <string name="word_ichi">eins</string>
+    <string name="word_kita">Norden</string>
+    <string name="word_neko">Katze</string>
+    <string name="word_inu">Hund</string>
+    <string name="word_sakana">Fisch</string>
+    <string name="word_natsu">Sommer</string>
+    <string name="word_niku">Fleisch</string>
+    <string name="word_nani">was</string>
+    <string name="word_naka">innen</string>
+    <string name="word_okane">Geld</string>
+    <string name="word_anata">du</string>
+    <string name="word_kinoko">Pilz</string>
+    <string name="word_kuni">Land</string>
+    <string name="word_hana">Blume</string>
+    <string name="word_hito">Mensch</string>
+    <string name="word_fune">Schiff</string>
+    <string name="word_hoshi">Stern</string>
+    <string name="word_hashi">Essstäbchen</string>
+    <string name="word_hikouki">Flugzeug</string>
+    <string name="word_fuku">Kleidung</string>
+    <string name="word_hako">Kiste</string>
+    <string name="word_hone">Knochen</string>
+    <string name="word_heso">Bauchnabel</string>
+    <string name="word_mimi">Ohr</string>
+    <string name="word_mushi">Insekt</string>
+    <string name="word_momo">Pfirsich</string>
+    <string name="word_atama">Kopf</string>
+    <string name="word_umi">Meer</string>
+    <string name="word_kuma">Bär</string>
+    <string name="word_namae">Name</string>
+    <string name="word_ame">Regen</string>
+    <string name="word_mise">Laden</string>
+    <string name="word_musume">Tochter</string>
+    <string name="word_kami">Papier</string>
+    <string name="word_yama">Berg</string>
+    <string name="word_yuki">Schnee</string>
+    <string name="word_fuyu">Winter</string>
+    <string name="word_heya">Zimmer</string>
+    <string name="word_yasai">Gemüse</string>
+    <string name="word_yume">Traum</string>
+    <string name="word_yasumi">freier Tag</string>
+    <string name="word_sakura">Kirschblüte</string>
+    <string name="word_kuruma">Auto</string>
+    <string name="word_tori">Vogel</string>
+    <string name="word_yoru">Nacht</string>
+    <string name="word_haru">Frühling</string>
+    <string name="word_sora">Himmel</string>
+    <string name="word_iro">Farbe</string>
+    <string name="word_kusuri">Medikament</string>
+    <string name="word_furo">Bad</string>
+    <string name="word_risu">Eichhörnchen</string>
+    <string name="word_rekishi">Geschichte</string>
+    <string name="word_watashi">ich</string>
+    <string name="word_kawa">Fluss</string>
+    <string name="word_niwa">Garten</string>
+    <string name="word_wani">Krokodil</string>
+    <string name="word_hon">Buch</string>
+    <string name="word_mikan">Mandarine</string>
+    <string name="word_tenki">Wetter</string>
+    <string name="word_sensei">Lehrer</string>
+    <string name="word_nihon">Japan</string>
+    <string name="word_honya">Buchhandlung</string>
+    <string name="word_kagi">Schlüssel</string>
+    <string name="word_gohan">Reis, Mahlzeit</string>
+    <string name="word_megane">Brille</string>
+    <string name="word_tamago">Ei</string>
+    <string name="word_ringo">Apfel</string>
+    <string name="word_eigo">Englisch (Sprache)</string>
+    <string name="word_hiragana">Hiragana</string>
+    <string name="word_usagi">Kaninchen</string>
+    <string name="word_ginkou">Bank</string>
+    <string name="word_kagami">Spiegel</string>
+    <string name="word_kaze">Wind</string>
+    <string name="word_mizu">Wasser</string>
+    <string name="word_chizu">Landkarte</string>
+    <string name="word_zou">Elefant</string>
+    <string name="word_jikan">Zeit</string>
+    <string name="word_shizuka">ruhig</string>
+    <string name="word_naze">warum</string>
+    <string name="word_mado">Fenster</string>
+    <string name="word_karada">Körper</string>
+    <string name="word_denwa">Telefon</string>
+    <string name="word_tomodachi">Freund</string>
+    <string name="word_doko">wo</string>
+    <string name="word_daigaku">Universität</string>
+    <string name="word_hanadi">Nasenbluten</string>
+    <string name="word_mikaduki">Mondsichel</string>
+    <string name="word_kaban">Tasche</string>
+    <string name="word_yubi">Finger</string>
+    <string name="word_buta">Schwein</string>
+    <string name="word_kabe">Wand</string>
+    <string name="word_boushi">Hut</string>
+    <string name="word_ebi">Garnele</string>
+    <string name="word_soba">Buchweizennudeln</string>
+    <string name="word_tabemono">Essen</string>
+    <string name="word_tenpura">Tempura</string>
+    <string name="word_sanpo">Spaziergang</string>
+    <string name="word_enpitsu">Bleistift</string>
+    <string name="word_kanpai">Prost!</string>
+    <string name="word_shinpai">Sorge</string>
+    <string name="word_pikapika">glänzend</string>
+    <string name="word_kyou">heute</string>
+    <string name="word_shashin">Foto</string>
+    <string name="word_isha">Arzt</string>
+    <string name="word_kyaku">Gast</string>
+    <string name="word_shukudai">Hausaufgabe</string>
+    <string name="word_densha">Zug</string>
+    <string name="word_kaisha">Firma</string>
+    <string name="word_shouyu">Sojasoße</string>
+    <string name="word_toshokan">Bibliothek</string>
+    <string name="word_kyuuri">Gurke</string>
+    <string name="word_ocha">Tee</string>
+    <string name="word_chawan">Reisschale</string>
+    <string name="word_chuui">Vorsicht</string>
+    <string name="word_choucho">Schmetterling</string>
+    <string name="word_chuugoku">China</string>
+    <string name="word_konnyaku">Konjak</string>
+    <string name="word_hyaku">hundert</string>
+    <string name="word_myouji">Nachname</string>
+    <string name="word_hyoutan">Flaschenkürbis</string>
+    <string name="word_myaku">Puls</string>
+    <string name="word_ryouri">Kochen</string>
+    <string name="word_ryuu">Drache</string>
+    <string name="word_gyuunyuu">Milch</string>
+    <string name="word_ryokou">Reise</string>
+    <string name="word_gyouza">Gyoza (Teigtaschen)</string>
+    <string name="word_kingyo">Goldfisch</string>
+    <string name="word_juu">zehn</string>
+    <string name="word_jouzu">geschickt</string>
+    <string name="word_byouin">Krankenhaus</string>
+    <string name="word_jisho">Wörterbuch</string>
+    <string name="word_sanbyaku">dreihundert</string>
+    <string name="word_pyonpyon">hüpfend</string>
+</resources>

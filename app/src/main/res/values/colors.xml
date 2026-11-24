@@ -1,0 +1,5 @@
+<resources>
+    <color name="washi">#F5EEDF</color>
+    <!-- The indigo seal (Theme.kt), used to tint the reminder notification. -->
+    <color name="seal">#2D4D8E</color>
+</resources>

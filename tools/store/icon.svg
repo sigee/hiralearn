@@ -1,0 +1,21 @@
+<!-- Play Store icon: the full adaptive launcher icon (res/drawable/ic_launcher_*.xml). The whole 108dp layer leaves the
+     glyph a margin inside the rounded mask Play applies itself, so this stays a full square. Render: tools/store/render.sh -->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="paper" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="40" y2="128">
+      <stop offset="0" stop-color="#F7F0E1"/><stop offset="1" stop-color="#E9DCC2"/>
+    </linearGradient>
+  </defs>
+  <path d="M0,0h128v128h-128z" fill="url(#paper)"/>
+  <path d="M18,30 q8,-3 14,2 M90,20 q6,4 13,2 M22,104 q9,2 15,-3 M96,108 q5,-5 12,-4 M60,114 q6,2 10,-1"
+        fill="none" stroke="#7A5A28" stroke-opacity="0.25" stroke-width="0.8" stroke-linecap="round"/>
+  <path d="M64,2v4 M64,10v4 M64,18v4 M64,26v4 M64,34v4 M64,42v4 M64,50v4 M64,58v4 M64,66v4 M64,74v4 M64,82v4 M64,90v4 M64,98v4 M64,106v4 M64,114v4 M64,122v4 M2,64h4 M10,64h4 M18,64h4 M26,64h4 M34,64h4 M42,64h4 M50,64h4 M58,64h4 M66,64h4 M74,64h4 M82,64h4 M90,64h4 M98,64h4 M106,64h4 M114,64h4 M122,64h4"
+        fill="none" stroke="#7A5A28" stroke-opacity="0.35" stroke-width="1.2"/>
+  <g fill="none" stroke="#1E1D24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M78,58 C70,80 56,96 44,96 C34,96 32,84 40,76 C52,66 76,62 88,70 C100,78 96,96 76,102" stroke-width="8.5" stroke-opacity="0.16"/>
+    <path d="M36,44 C48,44 62,42 82,38" stroke-width="9"/>
+    <path d="M56,26 C55,46 56,74 64,98" stroke-width="9"/>
+    <path d="M78,58 C70,80 56,96 44,96 C34,96 32,84 40,76 C52,66 76,62 88,70 C100,78 96,96 76,102" stroke-width="8.5"
+          pathLength="1" stroke-dasharray="0.62 2"/>
+  </g>
+</svg>

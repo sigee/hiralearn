@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Backup on Android 12+. Learning progress (Room database, with its WAL files so recent answers aren't lost) and
+    settings move to a new phone. Anything not included is left out on purpose, notably WorkManager's database:
+    restored jobs would fire with stale timing, and HiraLearnApplication re-schedules the reminder from the restored
+    settings anyway.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="database" path="hiralearn.db" />
+        <include domain="database" path="hiralearn.db-wal" />
+        <include domain="database" path="hiralearn.db-shm" />
+        <include domain="sharedpref" path="settings.xml" />
+    </cloud-backup>
+    <device-transfer>
+        <include domain="database" path="hiralearn.db" />
+        <include domain="database" path="hiralearn.db-wal" />
+        <include domain="database" path="hiralearn.db-shm" />
+        <include domain="sharedpref" path="settings.xml" />
+    </device-transfer>
+</data-extraction-rules>

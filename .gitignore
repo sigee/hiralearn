@@ -1,0 +1,17 @@
+.idea/*
+!.idea/icon.svg
+*.iml
+.gradle/
+.kotlin/
+build/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+
+# Release signing (upload key); never commit
+keystore.properties
+*.jks
+*.keystore

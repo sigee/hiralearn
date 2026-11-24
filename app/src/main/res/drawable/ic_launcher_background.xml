@@ -1,0 +1,31 @@
+<!-- Washi paper with the dashed centre cross of manuscript (practice) paper. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="128"
+    android:viewportHeight="128">
+    <path android:pathData="M0,0h128v128h-128z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="0"
+                android:startY="0"
+                android:endX="40"
+                android:endY="128"
+                android:startColor="#F7F0E1"
+                android:endColor="#E9DCC2" />
+        </aapt:attr>
+    </path>
+    <path
+        android:pathData="M18,30 q8,-3 14,2 M90,20 q6,4 13,2 M22,104 q9,2 15,-3 M96,108 q5,-5 12,-4 M60,114 q6,2 10,-1"
+        android:strokeWidth="0.8"
+        android:strokeColor="#7A5A28"
+        android:strokeAlpha="0.25"
+        android:strokeLineCap="round" />
+    <path
+        android:pathData="M64,2v4 M64,10v4 M64,18v4 M64,26v4 M64,34v4 M64,42v4 M64,50v4 M64,58v4 M64,66v4 M64,74v4 M64,82v4 M64,90v4 M64,98v4 M64,106v4 M64,114v4 M64,122v4 M2,64h4 M10,64h4 M18,64h4 M26,64h4 M34,64h4 M42,64h4 M50,64h4 M58,64h4 M66,64h4 M74,64h4 M82,64h4 M90,64h4 M98,64h4 M106,64h4 M114,64h4 M122,64h4"
+        android:strokeWidth="1.2"
+        android:strokeColor="#7A5A28"
+        android:strokeAlpha="0.35" />
+</vector>

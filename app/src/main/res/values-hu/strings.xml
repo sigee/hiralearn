@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu">Menü</string>
+    <string name="back">Vissza</string>
+    <string name="kana_chart">Kana-táblázat</string>
+    <string name="settings">Beállítások</string>
+    <string name="inked_count">%1$d / %2$d tintával megírva</string>
+    <string name="to_review">%d ismétlésre vár</string>
+    <string name="review_hint">Válaszold meg őket most, mielőtt kiesnek a fejedből.</string>
+    <string name="review_now">Ismétlés most</string>
+    <string name="all_caught_up">Minden kész</string>
+    <string name="first_kana_hint">Tanuld meg az első kanákat, hogy elkezdhesd az ismétlést.</string>
+    <string name="next_review_in">Következő ismétlés %s múlva.</string>
+    <string name="practice_anyway">Gyakorlás mégis</string>
+    <string name="practice_hint">A hibás kanák így is hamarabb visszajönnek; a jó válaszok nem tolják ki a következő ismétlést.</string>
+    <string name="all_inked">Minden hiragana tintával megírva!</string>
+    <string name="keep_reviewing">Ismételj tovább, hogy a tinta sötét maradjon.</string>
+    <string name="next_lesson">Következő: %s</string>
+    <string name="learn_n_new">%d új tanulása</string>
+    <string name="duration_min">%d perc</string>
+    <string name="duration_h_min">%1$d óra %2$d perc</string>
+    <string name="stage_new">új</string>
+    <string name="stage_learning">tanulás alatt</string>
+    <string name="stage_familiar">ismerős</string>
+    <string name="stage_strong">erős</string>
+    <string name="also_typed_as">így is beírható: %s</string>
+    <string name="stroke_order">Vonássorrend</string>
+    <string name="not_learned_yet">Még nincs megtanulva: csak halvány körvonal.</string>
+    <string name="skill_reading">Olvasás</string>
+    <string name="skill_writing">Írás</string>
+    <string name="skill_listening">Hallás</string>
+    <string name="due_now">most esedékes</string>
+    <string name="next_review_in_short">következő ismétlés %s múlva</string>
+    <string name="level_line">%1$d. szint / %2$d · %3$s\n%4$d jó · %5$d rossz</string>
+    <string name="practise_writing">Írásgyakorlás</string>
+    <string name="free_practice">Szabad gyakorlás: nem változtat a haladásodon.</string>
+    <string name="show_guide">Segédvonal</string>
+    <string name="clear">Törlés</string>
+    <string name="check">Ellenőrzés</string>
+    <string name="looks_right">Jónak tűnik!</string>
+    <string name="draw_order">Jó forma, de a vonássorrend nem stimmel.</string>
+    <string name="draw_direction">Jó forma, de egy vonás rossz irányba ment.</string>
+    <string name="draw_compare">Nem egészen. Hasonlítsd össze a kék vonallal.</string>
+    <string name="draw_nice">Szépen megírva.</string>
+    <string name="draw_shape">Ez még nem hasonlít erre: %s. A kék vonal mutatja, hogyan kellene kinéznie.</string>
+    <string name="nothing_learn">Minden hiraganát megtanultál!</string>
+    <string name="nothing_review">Most nincs mit ismételni.</string>
+    <string name="nothing_practice">Előbb tanulj meg néhány kanát, aztán itt gyakorolhatod őket.</string>
+    <string name="new_kana">Új kana</string>
+    <string name="got_it">Értem</string>
+    <string name="yoon_explanation">%1$s (%2$s) + kis %3$s (%4$s) → %5$s\nA kis kanát fél méretben, a négyzet bal alsó részébe írjuk.</string>
+    <string name="cant_draw">Most nem tudok rajzolni</string>
+    <string name="dont_know">Nem tudom</string>
+    <string name="prompt_type">Írd be a kiejtését</string>
+    <string name="prompt_reading_choice">Hogyan olvasod?</string>
+    <string name="prompt_writing_choice">Melyik ez?</string>
+    <string name="prompt_trace">Rajzold át</string>
+    <string name="prompt_write">Írd le</string>
+    <string name="prompt_listening_choice">Melyiket hallod?</string>
+    <string name="prompt_listening_write">Írd le, amit hallasz</string>
+    <string name="play_sound">Hang lejátszása</string>
+    <string name="reading_in_romaji">Kiejtés rōmajival</string>
+    <string name="correct">Helyes!</string>
+    <string name="not_quite">Nem egészen</string>
+    <string name="kana_is">olvasata: „%s”</string>
+    <string name="you_answered">Ezt válaszoltad: %1$s (%2$s). Hasonlítanak, ezért mindkettő hamarosan visszajön.</string>
+    <string name="versus">vs</string>
+    <string name="i_was_right">Igazam volt</string>
+    <string name="continue_">Tovább</string>
+    <string name="lesson_complete">Lecke kész</string>
+    <string name="review_complete">Ismétlés kész</string>
+    <string name="practice_complete">Gyakorlás kész</string>
+    <string name="drill_complete">Gyakorlás kész</string>
+    <string name="nothing_drill">Most nincs összekevert pár, amit gyakorolhatnál.</string>
+    <string name="confusions_title">Amiket összekeversz</string>
+    <string name="confusions_hint">Ezeket a párokat kevered össze a legtöbbször. Egy rövid gyakorlás egymás mellé teszi őket.</string>
+    <string name="drill_these">Gyakoroljuk</string>
+    <string name="score">%1$d / %2$d helyes (%3$d%%)</string>
+    <string name="learned">Megtanultad</string>
+    <string name="learned_hint">Néhány óra múlva visszajönnek ismétlésre.</string>
+    <string name="needs_practice">Még gyakorolni kell</string>
+    <string name="needs_practice_hint">Ezeket hamarabb újra megkérdezzük.</string>
+    <string name="done">Kész</string>
+    <string name="quit_session">Kilépés</string>
+    <string name="undo_stroke">Vonás visszavonása</string>
+    <string name="replay_stroke_order">Vonássorrend újrajátszása</string>
+    <string name="appearance">Megjelenés</string>
+    <string name="theme_system">Mint a telefon</string>
+    <string name="theme_paper">Papír</string>
+    <string name="theme_night">Éjszakai tinta</string>
+    <string name="language">Nyelv</string>
+    <string name="question_types">Kérdéstípusok</string>
+    <string name="question_types_hint">Az ismétlésnél és a gyakorlásnál számít. Az olvasáshoz feleletválasztás vagy gépelés kell, az íráshoz feleletválasztás vagy rajzolás, ezért egy kapcsoló zárolva van, ha kikapcsolva nem maradna mit kérdezni.</string>
+    <string name="qt_choice">Feleletválasztás</string>
+    <string name="qt_choice_hint">Válaszd ki a kiejtést vagy a kanát négy lehetőség közül.</string>
+    <string name="qt_typing">Gépelés</string>
+    <string name="qt_typing_hint">Írd be a kiejtést rōmajival.</string>
+    <string name="qt_drawing">Rajzolás</string>
+    <string name="qt_drawing_hint">Írd le a kanát kézzel. Új kanák tanulásakor az átrajzolásnál és az írásnál is ez számít.</string>
+    <string name="qt_listening">Hallás</string>
+    <string name="qt_listening_hint">Meghallasz egy kanát, és kiválasztod vagy leírod. A telefon japán felolvasóhangját használja.</string>
+    <string name="no_japanese_voice">Ezen a telefonon nincs japán felolvasóhang, ezért a hallás ki van kapcsolva. Telepíts egyet, aztán gyere vissza.</string>
+    <string name="install_voice">Japán hang telepítése</string>
+    <string name="no_voice_settings">Nem található felolvasó-beállítás ezen a telefonon.</string>
+    <string name="progress">Haladás</string>
+    <string name="progress_local">A haladásod csak ezen az eszközön van tárolva.</string>
+    <string name="reset_all">Minden haladás törlése</string>
+    <string name="developer">Fejlesztői (csak debug verzióban)</string>
+    <string name="developer_hint">Minden megtanult kanát azonnal esedékessé tesz, így az ismétlés várakozás nélkül kipróbálható.</string>
+    <string name="make_all_due">Mind esedékes most</string>
+    <string name="demo_progress">Kitöltés minta haladással</string>
+    <string name="about">Névjegy</string>
+    <string name="app_version">Verzió: %1$s</string>
+    <string name="about_text">A vonássorrend adatai Ulrich Apel KanjiVG projektjéből származnak (CC BY-SA 3.0). Betűtípusok: Klee One, Noto Serif JP és Noto Serif (SIL Open Font License 1.1).</string>
+    <string name="licenses">Licencek</string>
+    <string name="licenses_strokes_title">Vonássorrend</string>
+    <string name="licenses_strokes_text">A vonássorrend adatai Ulrich Apel KanjiVG projektjéből származnak, Creative Commons Nevezd meg! - Így add tovább! 3.0 licenc alatt. Az alkalmazáshoz SVG-útvonalakból pontlistákká lettek alakítva; az átalakított adatokra ugyanez a licenc vonatkozik.</string>
+    <string name="licenses_fonts_title">Betűtípusok</string>
+    <string name="licenses_fonts_text">Az alkalmazás ezeknek a betűtípusoknak egy részét tartalmazza (csak a használt karaktereket), a SIL Open Font License 1.1 alatt.</string>
+    <string name="licenses_libraries_title">Nyílt forráskódú könyvtárak</string>
+    <string name="licenses_libraries_text">Az alkalmazás ezekkel a könyvtárakkal készült, amelyek az Apache License 2.0 alatt állnak.</string>
+    <string name="show_licence_text">Licencszöveg megjelenítése</string>
+    <string name="hide_licence_text">Licencszöveg elrejtése</string>
+    <string name="licenses_english_note">A licencszövegek eredeti, angol nyelvű változatukban olvashatók.</string>
+    <string name="reset_title">Törlöd az összes haladást?</string>
+    <string name="reset_text">Minden megtanult kana és az ismétlési előzményeik törlődnek. Ez nem vonható vissza.</string>
+    <string name="reset">Törlés</string>
+    <string name="cancel">Mégse</string>
+    <string name="words_title">Szavak</string>
+    <string name="words_hint">Valódi szavak a már ismert kanákból: olvasd, írd és hallgasd őket. Az összekevert kanák hamarabb visszajönnek.</string>
+    <string name="read_now">Kezdés</string>
+    <string name="prompt_word_choice">Hogyan olvasod ezt a szót?</string>
+    <string name="prompt_word_type">Írd be a szó kiejtését</string>
+    <string name="word_means">jelentése: „%s”</string>
+    <string name="word_misread">%1$s (%2$s) helyett ezt olvastad: %3$s (%4$s). Mindkettő hamarosan visszajön.</string>
+    <string name="prompt_word_write_choice">Hogyan írjuk ezt a szót?</string>
+    <string name="prompt_word_write">Írd le ezt a szót</string>
+    <string name="prompt_word_listen_choice">Melyik szót hallod?</string>
+    <string name="prompt_word_listen_write">Írd le a szót, amit hallasz</string>
+    <string name="word_mixed_up">%1$s (%2$s) összekeveredett ezzel: %3$s (%4$s). Mindkettő hamarosan visszajön.</string>
+    <string name="word_next_kana">Következő kana</string>
+    <string name="word_kana_cell">%1$d. kana (%2$d közül)</string>
+    <string name="words_complete">Szavak kész</string>
+    <string name="words_read">Elsőre helyes</string>
+    <string name="nothing_words">Fejezd be az első leckét, utána lesznek olvasható szavak.</string>
+    <string name="new_words">Új olvasható szavak</string>
+    <string name="read_them_now">Olvasd el őket</string>
+    <plurals name="words_available">
+        <item quantity="one">%d szót már el tudsz olvasni</item>
+        <item quantity="other">%d szót már el tudsz olvasni</item>
+    </plurals>
+    <plurals name="draw_stroke_count">
+        <item quantity="one">%1$s %2$d vonásból áll, te %3$d vonást húztál.</item>
+        <item quantity="other">%1$s %2$d vonásból áll, te %3$d vonást húztál.</item>
+    </plurals>
+    <plurals name="mixed_up_count">
+        <item quantity="one">%d alkalommal összekeverve</item>
+        <item quantity="other">%d alkalommal összekeverve</item>
+    </plurals>
+    <plurals name="duration_days">
+        <item quantity="one">%d nap</item>
+        <item quantity="other">%d nap</item>
+    </plurals>
+    <plurals name="cards_due_now">
+        <item quantity="one">%d kártya most esedékes</item>
+        <item quantity="other">%d kártya most esedékes</item>
+    </plurals>
+    <string-array name="lesson_titles">
+        <item>Magánhangzók</item>
+        <item>K-sor</item>
+        <item>S-sor</item>
+        <item>T-sor</item>
+        <item>N-sor</item>
+        <item>H-sor</item>
+        <item>M-sor</item>
+        <item>Y-sor</item>
+        <item>R-sor</item>
+        <item>W-sor és N</item>
+        <item>G-sor</item>
+        <item>Z-sor</item>
+        <item>D-sor</item>
+        <item>B-sor</item>
+        <item>P-sor</item>
+        <item>KY és SH</item>
+        <item>CH és NY</item>
+        <item>HY és MY</item>
+        <item>RY és GY</item>
+        <item>J és BY</item>
+        <item>PY</item>
+    </string-array>
+    <string-array name="group_titles">
+        <item>Alap hiragana</item>
+        <item>Dakuten és handakuten</item>
+        <item>Összetételek (yōon)</item>
+    </string-array>
+
+    <!-- Daily review reminder -->
+    <string name="reminder">Napi emlékeztető</string>
+    <string name="reminder_switch">Emlékeztess az ismétlésre</string>
+    <string name="reminder_hint">Értesítés ebben az időpontban, ha esedékes kanák várnak. Ha mindennel megvagy, nem kapsz értesítést.</string>
+    <string name="reminder_time">Időpont</string>
+    <string name="reminder_blocked">A HiraLearn értesítései ki vannak kapcsolva, így nem jelenhet meg emlékeztető.</string>
+    <string name="open_notification_settings">Értesítési beállítások megnyitása</string>
+    <string name="ok">OK</string>
+    <string name="reminder_channel">Ismétlési emlékeztetők</string>
+    <string name="reminder_channel_desc">Napi jelzés, ha esedékes kanák várnak ismétlésre.</string>
+    <plurals name="reminder_title">
+        <item quantity="one">%d kana vár rád</item>
+        <item quantity="other">%d kana vár rád</item>
+    </plurals>
+    <string name="reminder_text">Ismételd át őket most, mielőtt kiesnek a fejedből.</string>
+    <!-- Word meanings for "Read words", by word id (core Words.kt). -->
+    <string name="word_ai">szerelem</string>
+    <string name="word_ie">ház</string>
+    <string name="word_ue">fent</string>
+    <string name="word_ao">kék</string>
+    <string name="word_iie">nem</string>
+    <string name="word_aka">piros</string>
+    <string name="word_aki">ősz</string>
+    <string name="word_eki">állomás</string>
+    <string name="word_kao">arc</string>
+    <string name="word_koe">hang</string>
+    <string name="word_ike">tavacska</string>
+    <string name="word_koko">itt</string>
+    <string name="word_kuuki">levegő</string>
+    <string name="word_kikai">gép</string>
+    <string name="word_oka">domb</string>
+    <string name="word_sushi">szusi</string>
+    <string name="word_asa">reggel</string>
+    <string name="word_isu">szék</string>
+    <string name="word_ushi">tehén</string>
+    <string name="word_shio">só</string>
+    <string name="word_kasa">esernyő</string>
+    <string name="word_ashi">láb</string>
+    <string name="word_sekai">világ</string>
+    <string name="word_okashi">édesség</string>
+    <string name="word_suika">görögdinnye</string>
+    <string name="word_soko">ott</string>
+    <string name="word_tako">polip</string>
+    <string name="word_kutsu">cipő</string>
+    <string name="word_tsukue">íróasztal</string>
+    <string name="word_kuchi">száj</string>
+    <string name="word_tsuki">hold</string>
+    <string name="word_soto">kint</string>
+    <string name="word_tokei">óra</string>
+    <string name="word_taiko">dob</string>
+    <string name="word_chikatetsu">metró</string>
+    <string name="word_ichi">egy</string>
+    <string name="word_kita">észak</string>
+    <string name="word_neko">macska</string>
+    <string name="word_inu">kutya</string>
+    <string name="word_sakana">hal</string>
+    <string name="word_natsu">nyár</string>
+    <string name="word_niku">hús</string>
+    <string name="word_nani">mi</string>
+    <string name="word_naka">belül</string>
+    <string name="word_okane">pénz</string>
+    <string name="word_anata">te</string>
+    <string name="word_kinoko">gomba</string>
+    <string name="word_kuni">ország</string>
+    <string name="word_hana">virág</string>
+    <string name="word_hito">ember</string>
+    <string name="word_fune">hajó</string>
+    <string name="word_hoshi">csillag</string>
+    <string name="word_hashi">evőpálcika</string>
+    <string name="word_hikouki">repülőgép</string>
+    <string name="word_fuku">ruha</string>
+    <string name="word_hako">doboz</string>
+    <string name="word_hone">csont</string>
+    <string name="word_heso">köldök</string>
+    <string name="word_mimi">fül</string>
+    <string name="word_mushi">rovar</string>
+    <string name="word_momo">őszibarack</string>
+    <string name="word_atama">fej</string>
+    <string name="word_umi">tenger</string>
+    <string name="word_kuma">medve</string>
+    <string name="word_namae">név</string>
+    <string name="word_ame">eső</string>
+    <string name="word_mise">bolt</string>
+    <string name="word_musume">lánygyermek</string>
+    <string name="word_kami">papír</string>
+    <string name="word_yama">hegy</string>
+    <string name="word_yuki">hó</string>
+    <string name="word_fuyu">tél</string>
+    <string name="word_heya">szoba</string>
+    <string name="word_yasai">zöldség</string>
+    <string name="word_yume">álom</string>
+    <string name="word_yasumi">szabadnap</string>
+    <string name="word_sakura">cseresznyevirág</string>
+    <string name="word_kuruma">autó</string>
+    <string name="word_tori">madár</string>
+    <string name="word_yoru">éjszaka</string>
+    <string name="word_haru">tavasz</string>
+    <string name="word_sora">ég</string>
+    <string name="word_iro">szín</string>
+    <string name="word_kusuri">gyógyszer</string>
+    <string name="word_furo">fürdő</string>
+    <string name="word_risu">mókus</string>
+    <string name="word_rekishi">történelem</string>
+    <string name="word_watashi">én</string>
+    <string name="word_kawa">folyó</string>
+    <string name="word_niwa">kert</string>
+    <string name="word_wani">krokodil</string>
+    <string name="word_hon">könyv</string>
+    <string name="word_mikan">mandarin</string>
+    <string name="word_tenki">időjárás</string>
+    <string name="word_sensei">tanár</string>
+    <string name="word_nihon">Japán</string>
+    <string name="word_honya">könyvesbolt</string>
+    <string name="word_kagi">kulcs</string>
+    <string name="word_gohan">főtt rizs, étkezés</string>
+    <string name="word_megane">szemüveg</string>
+    <string name="word_tamago">tojás</string>
+    <string name="word_ringo">alma</string>
+    <string name="word_eigo">angol (nyelv)</string>
+    <string name="word_hiragana">hiragana</string>
+    <string name="word_usagi">nyúl</string>
+    <string name="word_ginkou">bank</string>
+    <string name="word_kagami">tükör</string>
+    <string name="word_kaze">szél</string>
+    <string name="word_mizu">víz</string>
+    <string name="word_chizu">térkép</string>
+    <string name="word_zou">elefánt</string>
+    <string name="word_jikan">idő</string>
+    <string name="word_shizuka">csendes</string>
+    <string name="word_naze">miért</string>
+    <string name="word_mado">ablak</string>
+    <string name="word_karada">test</string>
+    <string name="word_denwa">telefon</string>
+    <string name="word_tomodachi">barát</string>
+    <string name="word_doko">hol</string>
+    <string name="word_daigaku">egyetem</string>
+    <string name="word_hanadi">orrvérzés</string>
+    <string name="word_mikaduki">holdsarló</string>
+    <string name="word_kaban">táska</string>
+    <string name="word_yubi">ujj</string>
+    <string name="word_buta">disznó</string>
+    <string name="word_kabe">fal</string>
+    <string name="word_boushi">kalap</string>
+    <string name="word_ebi">garnélarák</string>
+    <string name="word_soba">hajdinatészta</string>
+    <string name="word_tabemono">étel</string>
+    <string name="word_tenpura">tempura</string>
+    <string name="word_sanpo">séta</string>
+    <string name="word_enpitsu">ceruza</string>
+    <string name="word_kanpai">egészségedre!</string>
+    <string name="word_shinpai">aggodalom</string>
+    <string name="word_pikapika">csillogó</string>
+    <string name="word_kyou">ma</string>
+    <string name="word_shashin">fénykép</string>
+    <string name="word_isha">orvos</string>
+    <string name="word_kyaku">vendég</string>
+    <string name="word_shukudai">házi feladat</string>
+    <string name="word_densha">vonat</string>
+    <string name="word_kaisha">cég</string>
+    <string name="word_shouyu">szójaszósz</string>
+    <string name="word_toshokan">könyvtár</string>
+    <string name="word_kyuuri">uborka</string>
+    <string name="word_ocha">tea</string>
+    <string name="word_chawan">rizses tál</string>
+    <string name="word_chuui">figyelem</string>
+    <string name="word_choucho">pillangó</string>
+    <string name="word_chuugoku">Kína</string>
+    <string name="word_konnyaku">konjak</string>
+    <string name="word_hyaku">száz</string>
+    <string name="word_myouji">vezetéknév</string>
+    <string name="word_hyoutan">lopótök</string>
+    <string name="word_myaku">pulzus</string>
+    <string name="word_ryouri">főzés</string>
+    <string name="word_ryuu">sárkány</string>
+    <string name="word_gyuunyuu">tej</string>
+    <string name="word_ryokou">utazás</string>
+    <string name="word_gyouza">gjóza (töltött tészta)</string>
+    <string name="word_kingyo">aranyhal</string>
+    <string name="word_juu">tíz</string>
+    <string name="word_jouzu">ügyes</string>
+    <string name="word_byouin">kórház</string>
+    <string name="word_jisho">szótár</string>
+    <string name="word_sanbyaku">háromszáz</string>
+    <string name="word_pyonpyon">szökdécselve</string>
+</resources>

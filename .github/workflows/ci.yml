@@ -1,0 +1,89 @@
+# Checks every pull request, and runs again after a merge to master. The post-merge run keeps master's status honest
+# (a merge can combine two green PRs into a red build), publishes a debug APK to try on a device, and is the only run
+# that writes the Gradle cache: setup-gradle saves caches from the default branch only, and PR runs read them.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # A new push to a PR cancels its older run; runs on master always finish.
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  core:
+    name: Core tests and mutation testing
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          # 17 for core's jvmToolchain(17); 21 (listed last, so the default) runs Gradle.
+          java-version: |
+            17
+            21
+
+      - uses: gradle/actions/setup-gradle@v6
+
+      - name: Unit tests and pitest (fails below a 90% kill rate)
+        run: ./gradlew :core:test :core:pitest
+
+      - name: Upload test and mutation reports
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: core-reports
+          path: |
+            core/build/reports/tests/
+            core/build/reports/pitest/
+          retention-days: 14
+
+  app:
+    name: Android lint and builds
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: |
+            17
+            21
+
+      - uses: gradle/actions/setup-gradle@v6
+
+      # The runner image ships an Android SDK, but not the 37.2 minor platform that Compose 1.13 needs.
+      - name: Install Android platform 37.2
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-37.2" > /dev/null
+
+      # The release build is unsigned here (no keystore); it still runs R8, which catches missing keep rules.
+      - name: Lint, debug and release builds
+        run: ./gradlew :app:lintDebug :app:assembleDebug :app:assembleRelease
+
+      - name: Upload lint report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: lint-report
+          path: app/build/reports/lint-results-debug.html
+          retention-days: 14
+
+      - name: Upload debug APK
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: hiralearn-debug-${{ github.sha }}
+          path: app/build/outputs/apk/debug/*.apk
+          retention-days: 30

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- Play Store feature graphic (1024x500), one per language. render.sh fills in the fonts (base64, since headless
+     browsers won't load fonts from file:// pages) and the tagline. Ink & Seal style: washi paper, sumi ink, an indigo
+     OK seal, and kana going faint outline -> pencil -> ink -> ink + seal, as progress does in the app. -->
+<html lang="__LANG__">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: Klee; src: url(data:font/ttf;base64,__KLEE__); }
+  @font-face { font-family: InkSerif; font-weight: 400; src: url(data:font/ttf;base64,__SERIF__); }
+  @font-face { font-family: InkSerif; font-weight: 600; src: url(data:font/ttf;base64,__SERIF_SB__); }
+  html, body { margin: 0; width: 1024px; height: 500px; overflow: hidden; }
+  body { position: relative; background: linear-gradient(160deg, #F7F0E1 0%, #EFE5D1 55%, #E9DCC2 100%); color: #23222A; }
+  .fibres { position: absolute; inset: 0; }
+  .wash { position: absolute; left: 36px; top: 46px; width: 420px; height: 410px; border-radius: 46% 54% 50% 50% / 52% 46% 54% 48%;
+          background: radial-gradient(ellipse at 45% 45%, rgba(122, 90, 40, 0.10), rgba(122, 90, 40, 0) 70%); }
+  .logo { position: absolute; left: 76px; top: 70px; width: 360px; height: 360px; }
+  .text { position: absolute; left: 488px; top: 92px; right: 40px; }
+  h1 { font-family: InkSerif; font-weight: 600; font-size: 82px; margin: 0; letter-spacing: 0.5px; line-height: 1; }
+  p { font-family: InkSerif; font-size: 29px; margin: 18px 0 0; color: #5E533F; line-height: 1.3; }
+  .row { display: flex; gap: 0; margin-top: 40px; }
+  .cell { position: relative; width: 96px; height: 96px; background: #FBF7EE; border: 2px solid #B9A57E; margin-right: -2px;
+          font-family: Klee; font-size: 64px; display: flex; align-items: center; justify-content: center; }
+  .cell::before, .cell::after { content: ""; position: absolute; border: 0 dashed #DCCBA6; }
+  .cell::before { left: 50%; top: 4px; bottom: 4px; border-left-width: 1.5px; }
+  .cell::after { top: 50%; left: 4px; right: 4px; border-top-width: 1.5px; }
+  .cell span { position: relative; z-index: 1; }
+  .new { color: rgba(35, 34, 42, 0.13); }
+  .pencil { color: rgba(110, 102, 92, 0.85); }
+  .ink { color: rgba(35, 34, 42, 0.8); }
+  .strong { color: #23222A; font-weight: 600; }
+  .seal { position: absolute; right: 6px; bottom: 6px; z-index: 2; width: 34px; height: 30px; border: 2.5px solid #2D4D8E; border-radius: 3px;
+          color: #2D4D8E; background: rgba(220, 226, 239, 0.75); font-family: InkSerif; font-weight: 600; font-size: 15px;
+          display: flex; align-items: center; justify-content: center; transform: rotate(-8deg); }
+</style>
+</head>
+<body>
+<svg class="fibres" viewBox="0 0 1024 500" fill="none" stroke="#7A5A28" stroke-linecap="round">
+  <g stroke-opacity="0.18" stroke-width="1">
+    <path d="M40,40 q30,-10 54,6"/><path d="M300,470 q24,8 50,-6"/><path d="M620,30 q20,12 46,4"/><path d="M960,80 q14,16 40,10"/>
+    <path d="M880,450 q-20,-14 -44,-4"/><path d="M470,20 q12,14 34,10"/><path d="M20,300 q16,18 8,40"/><path d="M740,470 q20,-12 40,0"/>
+    <path d="M560,440 q-16,-6 -30,4"/><path d="M990,300 q-14,10 -10,30"/>
+  </g>
+</svg>
+<div class="wash"></div>
+<!-- The launcher icon's あ on manuscript paper (paths from res/drawable/ic_launcher_*.xml, viewport 128). -->
+<svg class="logo" viewBox="14 14 100 100">
+  <rect x="16" y="16" width="96" height="96" fill="#FBF7EE" stroke="#B9A57E" stroke-width="0.9"/>
+  <path d="M64,18v4 M64,26v4 M64,34v4 M64,42v4 M64,50v4 M64,58v4 M64,66v4 M64,74v4 M64,82v4 M64,90v4 M64,98v4 M64,106v4 M18,64h4 M26,64h4 M34,64h4 M42,64h4 M50,64h4 M58,64h4 M66,64h4 M74,64h4 M82,64h4 M90,64h4 M98,64h4 M106,64h4"
+        stroke="#7A5A28" stroke-opacity="0.35" stroke-width="0.8" fill="none"/>
+  <g fill="none" stroke="#1E1D24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M78,58 C70,80 56,96 44,96 C34,96 32,84 40,76 C52,66 76,62 88,70 C100,78 96,96 76,102" stroke-width="8.5" stroke-opacity="0.16"/>
+    <path d="M36,44 C48,44 62,42 82,38" stroke-width="9"/>
+    <path d="M56,26 C55,46 56,74 64,98" stroke-width="9"/>
+    <path d="M78,58 C70,80 56,96 44,96 C34,96 32,84 40,76 C52,66 76,62 88,70 C100,78 96,96 76,102" stroke-width="8.5"
+          pathLength="1" stroke-dasharray="0.62 2"/>
+  </g>
+</svg>
+<div class="text">
+  <h1>HiraLearn</h1>
+  <p>__TAGLINE__</p>
+  <div class="row">
+    <div class="cell"><span class="new">か</span></div>
+    <div class="cell"><span class="pencil">き</span></div>
+    <div class="cell"><span class="ink">く</span></div>
+    <div class="cell"><span class="strong">け</span><div class="seal">OK</div></div>
+  </div>
+</div>
+</body>
+</html>

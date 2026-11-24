@@ -1,0 +1,29 @@
+HiraLearn teaches you all 104 hiragana: reading, writing and listening. It works like a calligraphy desk: every kana you learn goes from a faint outline to pencil, then to ink, until it earns its seal.
+
+<b>Learn a few at a time</b>
+Each lesson introduces up to five new kana. You see each one big, hear how it sounds and watch its stroke order. Then you practise it straight away: pick its reading, pick it by sound, trace it, type it and finally write it from memory.
+
+<b>Spaced repetition that adapts to you</b>
+Every kana gets separate cards for reading, writing and listening. A right answer pushes the next review further out, from hours to months. A wrong answer brings it back in ten minutes and asks it again later in the same session. Questions get harder as you get better: from multiple choice to typing, from picking a kana to drawing it.
+
+<b>Write with your finger</b>
+Your handwriting is checked stroke by stroke against reference stroke order: shape, number of strokes, order and direction. If you write a different kana, the app notices that too.
+
+<b>It knows what you confuse</b>
+Answer options are chosen from kana that look alike (あ/お/め/ぬ, さ/ち/き, ね/れ/わ…). If you mix two kana up, both come back soon. "Your confusions" shows the pairs you mix up most often, and a short drill puts them side by side.
+
+<b>Read real words</b>
+Once you know their kana, you can read about 170 everyday Japanese words.
+
+<b>Also included</b>
+• The complete hiragana: basic kana, dakuten, handakuten and combinations (きゃ, しゅ, ちょ…)
+• A kana chart showing your progress
+• An optional daily reminder when reviews are waiting
+• Choose which question types you want
+• Light and dark mode
+• English, Hungarian and German
+
+<b>Private and offline</b>
+No account, no ads, no tracking. HiraLearn works without an internet connection and your progress stays on your phone. Sounds come from your phone's Japanese text-to-speech voice.
+
+Stroke order data: KanjiVG by Ulrich Apel (CC BY-SA 3.0).
