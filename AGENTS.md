@@ -102,6 +102,14 @@ The app looks like a calligraphy desk. Keep new UI in this style; the building b
 - Versions live in `gradle/libs.versions.toml`. Check the newest stable versions on Google Maven / Maven Central
   before bumping. AndroidX AARs declare a `minCompileSdk` that may force a compileSdk bump.
 
+## Commits
+
+Use [Conventional Commits](https://www.conventionalcommits.org/): `feat:`, `fix:`, `perf:`, `refactor:`, `docs:`,
+`build:`, `chore:`, `ci:`, `style:`, `test:`, with an optional scope (`fix(writing): ...`) and `!` for a breaking change.
+Release notes are generated from them (`cliff.toml`), so write the subject for a reader of the notes: what changed for
+the user, in the imperative ("add listening cards"). `feat`, `fix`, `perf`, `refactor` and `docs` appear in the notes;
+the rest don't.
+
 ## Code style
 
 Kotlin official style (`kotlin.code.style=official`, see `.editorconfig`), 4-space indent, max line ~140.
