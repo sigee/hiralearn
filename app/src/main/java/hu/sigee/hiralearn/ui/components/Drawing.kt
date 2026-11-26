@@ -44,14 +44,12 @@ import hu.sigee.hiralearn.R
 import hu.sigee.hiralearn.core.Point
 import hu.sigee.hiralearn.core.Stroke
 import hu.sigee.hiralearn.core.StrokeLibrary
+import hu.sigee.hiralearn.core.StrokeTimeline
 import hu.sigee.hiralearn.ui.ink.BrushStyle
 import hu.sigee.hiralearn.ui.ink.drawBrushStrokes
 import hu.sigee.hiralearn.ui.theme.InkColors
 import hu.sigee.hiralearn.ui.theme.LocalInkColors
 import hu.sigee.hiralearn.ui.theme.SerifFont
-import kotlin.math.PI
-import kotlin.math.acos
-import kotlin.math.hypot
 
 private const val BOX = StrokeLibrary.BOX
 
@@ -158,74 +156,6 @@ fun StrokeOrderView(strokes: List<Stroke>, modifier: Modifier = Modifier, loop: 
         IconButton(onClick = { replay++ }, modifier = Modifier.align(Alignment.BottomEnd).padding(2.dp)) {
             Icon(painterResource(R.drawable.ic_replay), contentDescription = stringResource(R.string.replay_stroke_order), tint = c.pencil)
         }
-    }
-}
-
-/** Pen speed of the stroke-order animation, in milliseconds per unit of the 109-unit box. */
-private const val MS_PER_UNIT = 9f
-
-/** Shortest time a stroke takes, so tiny ticks are still visible. */
-private const val MIN_STROKE_MS = 300f
-
-/** Pen-up pause between strokes. */
-private const val PAUSE_MS = 180f
-
-/** Extra "distance" for a full reversal of direction, so the pen visibly dwells at sharp corners. */
-private const val CORNER_UNITS = 14f
-
-/** Turns gentler than this (radians) are part of a curve and cost nothing extra. */
-private const val CORNER_THRESHOLD = 0.5f
-
-/**
- * Timing of the stroke-order animation. Every stroke used to take the same time, so a short tick crawled while a long
- * stroke with several turns (the second stroke of え) flew by. Here the pen moves at one steady speed along the stroke,
- * slowing at sharp corners, so every stroke reads at the same pace.
- */
-private class StrokeTimeline(private val strokes: List<Stroke>) {
-    /** Per stroke, the cumulative pen "distance" at each point: arc length plus corner dwell. */
-    private val distances: List<FloatArray> = strokes.map { stroke ->
-        FloatArray(stroke.size).also { d ->
-            for (i in 1 until stroke.size) {
-                val a = stroke[i - 1]
-                val b = stroke[i]
-                var step = hypot(b.x - a.x, b.y - a.y)
-                if (i >= 2) {
-                    val p = stroke[i - 2]
-                    val turn = angleBetween(a.x - p.x, a.y - p.y, b.x - a.x, b.y - a.y)
-                    step += (turn - CORNER_THRESHOLD).coerceAtLeast(0f) / PI.toFloat() * CORNER_UNITS
-                }
-                d[i] = d[i - 1] + step
-            }
-        }
-    }
-    private val durations = distances.map { maxOf(MIN_STROKE_MS, (it.lastOrNull() ?: 0f) * MS_PER_UNIT) }
-    val startMs: FloatArray = FloatArray(strokes.size).also { s ->
-        for (i in 1 until strokes.size) s[i] = s[i - 1] + durations[i - 1] + PAUSE_MS
-    }
-    val totalMs: Float = if (strokes.isEmpty()) 0f else startMs.last() + durations.last()
-
-    /** The part of stroke [index] written by [elapsedMs], ending at an interpolated point; null before it starts. */
-    fun partial(index: Int, elapsedMs: Float): Stroke? {
-        val stroke = strokes[index]
-        val local = (elapsedMs - startMs[index]) / durations[index]
-        if (local <= 0f || stroke.size < 2) return null
-        if (local >= 1f) return stroke
-        val d = distances[index]
-        val target = local * d.last()
-        var k = 1
-        while (k < d.size - 1 && d[k] < target) k++
-        val span = d[k] - d[k - 1]
-        val f = if (span > 0f) ((target - d[k - 1]) / span).coerceIn(0f, 1f) else 1f
-        val a = stroke[k - 1]
-        val b = stroke[k]
-        return stroke.take(k) + Point(a.x + (b.x - a.x) * f, a.y + (b.y - a.y) * f)
-    }
-
-    private fun angleBetween(ux: Float, uy: Float, vx: Float, vy: Float): Float {
-        val lu = hypot(ux, uy)
-        val lv = hypot(vx, vy)
-        if (lu == 0f || lv == 0f) return 0f
-        return acos(((ux * vx + uy * vy) / (lu * lv)).coerceIn(-1f, 1f))
     }
 }
 
