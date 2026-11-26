@@ -1,0 +1,37 @@
+# git-cliff config: turns Conventional Commits (feat:, fix:, ...) into release notes. https://git-cliff.org
+# The release workflow runs `git-cliff --latest --strip all` for the GitHub Release body.
+# Preview the next release's notes locally with `git cliff --unreleased --strip all`.
+
+[changelog]
+body = """
+{% for group, commits in commits | group_by(attribute="group") %}
+### {{ group | striptags | trim }}
+{% for commit in commits %}
+- {% if commit.breaking %}**Breaking:** {% endif %}\
+{% if commit.scope %}**{{ commit.scope }}:** {% endif %}\
+{{ commit.message | split(pat="\n") | first | trim | upper_first }}\
+{% endfor %}
+{% endfor %}
+"""
+trim = true
+
+[git]
+conventional_commits = true
+# Commits that don't follow the convention (e.g. the initial commit) are left out.
+filter_unconventional = true
+# Commits that match no parser below are left out too.
+filter_commits = true
+split_commits = false
+tag_pattern = "v[0-9].*"
+sort_commits = "oldest"
+# The HTML comments only set the section order; striptags removes them from the output.
+commit_parsers = [
+    { message = "^feat", group = "<!-- 0 -->Features" },
+    { message = "^fix", group = "<!-- 1 -->Bug fixes" },
+    { message = "^perf", group = "<!-- 2 -->Performance" },
+    { message = "^revert", group = "<!-- 3 -->Reverts" },
+    { message = "^refactor", group = "<!-- 4 -->Refactoring" },
+    { message = "^docs", group = "<!-- 5 -->Documentation" },
+    # build (incl. Dependabot's build(deps)), chore, ci, style and test are not release notes, unless breaking (type!:).
+    { message = "^(build|chore|ci|style|test)(\\(.*\\))?!:", group = "<!-- 6 -->Other breaking changes" },
+]

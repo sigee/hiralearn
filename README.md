@@ -103,9 +103,16 @@ CI (`.github/workflows/ci.yml`) checks every pull request and every commit on `m
 1. Set `versionName` in `app/build.gradle.kts` (e.g. `0.2.0`) and merge that to `master`.
 2. Tag the merged commit and push the tag: `git tag v0.2.0 && git push origin v0.2.0`.
 3. `.github/workflows/release.yml` checks that the tag is on `master` and matches `versionName`, sets `versionCode` to
-   the workflow's run number, builds and signs the bundle, and creates a GitHub Release with generated notes, the
-   `.aab` and the R8 mapping.
+   the workflow's run number, builds and signs the bundle, and creates a GitHub Release with the `.aab`, the R8
+   mapping and release notes.
 4. Download the `.aab` from the GitHub Release and upload it in Play Console.
+
+The release notes come from the commit messages since the previous tag, which follow
+[Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `perf:`, `refactor:`, `docs:`, and
+`build:`, `chore:`, `ci:`, `style:`, `test:` for changes that stay out of the notes; `!` marks a breaking change).
+[git-cliff](https://git-cliff.org) groups them as set in `cliff.toml`. To preview the next release's notes, run
+`git cliff --unreleased --strip all`. With squash merges, the PR title becomes the commit message, so give PRs
+conventional titles. The Play Console "What's new" text is separate: write it by hand for users, in every language.
 
 One-time GitHub setup:
 

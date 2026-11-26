@@ -1,9 +1,13 @@
 # Weekly update PRs, one per ecosystem, so CI checks each bump before it is merged.
+# Conventional prefixes (build(deps):, ci:) keep these bumps out of the release notes (cliff.toml).
 # AndroidX AARs can raise minCompileSdk: if a bump fails on that, raise compileSdk (see AGENTS.md).
 version: 2
 updates:
   - package-ecosystem: gradle
     directory: /
+    commit-message:
+      prefix: build
+      include: scope
     schedule:
       interval: weekly
     groups:
@@ -12,6 +16,8 @@ updates:
 
   - package-ecosystem: github-actions
     directory: /
+    commit-message:
+      prefix: ci
     schedule:
       interval: weekly
     groups:

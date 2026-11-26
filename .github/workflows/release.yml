@@ -94,12 +94,27 @@ jobs:
           # Play reads the R8 mapping from inside the bundle; this copy is for decoding stack traces yourself.
           cp app/build/outputs/mapping/release/mapping.txt "dist/mapping-$VERSION_NAME-$FINAL_CODE.txt"
 
+      # Notes from the Conventional Commits since the previous tag, grouped by cliff.toml.
+      - name: Generate release notes
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --latest --strip all
+        env:
+          OUTPUT: ${{ runner.temp }}/changes.md
+
       - name: Create the GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          notes="$RUNNER_TEMP/notes.md"
+          if [ -s "$RUNNER_TEMP/changes.md" ] && grep -q '[^[:space:]]' "$RUNNER_TEMP/changes.md"; then
+            cat "$RUNNER_TEMP/changes.md" > "$notes"
+          else
+            echo "No user-facing changes recorded." > "$notes"
+          fi
+          printf '\n---\nversionCode %s\n' "$FINAL_CODE" >> "$notes"
           gh release create "$TAG" dist/* \
             --verify-tag \
             --title "HiraLearn $VERSION_NAME" \
-            --generate-notes \
-            --notes "versionCode $FINAL_CODE"
+            --notes-file "$notes"
