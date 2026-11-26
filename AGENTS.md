@@ -66,7 +66,7 @@ mutant survives, add a test that pins the behaviour (see `MutationGapTest.kt`) r
   `R.array.lesson_titles` / `R.array.group_titles` (`ui/Strings.kt`), so keep those arrays in `Hiragana.lessons` order.
   German durations follow "in", so plural forms use the dative ("Tagen").
 - The bundled fonts are subsets: if a translation needs a new character, re-subset (see `tools/`). Noto Serif JP lacks
-  ő/ű, which `tools/add_glyphs.py` copies in from Noto Serif.
+  ő/ű, which `tools/add_glyphs.py` builds from its own o/u and acute accent (run it on both weights after subsetting).
 - Stroke data is KanjiVG, CC BY-SA 3.0. Keep the attribution (file header, README, Settings → About → Licences).
 - Everything bundled must be credited in the Licences screen (`ui/settings/LicensesScreen.kt`, texts in `res/raw`):
   a new library goes into `library_names` (and needs its licence text if it isn't Apache 2.0), a new font into
