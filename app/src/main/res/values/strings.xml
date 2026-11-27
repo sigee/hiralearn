@@ -68,6 +68,8 @@
     <string name="versus">vs</string>
     <string name="i_was_right">I was right</string>
     <string name="continue_">Continue</string>
+    <string name="hide_feedback">Hide the message</string>
+    <string name="show_feedback">Show the message</string>
     <string name="lesson_complete">Lesson complete</string>
     <string name="review_complete">Review complete</string>
     <string name="practice_complete">Practice complete</string>

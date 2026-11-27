@@ -14,17 +14,30 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.animation.animateContentSize
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import hu.sigee.hiralearn.ui.ink.inkWash
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -191,5 +204,52 @@ fun StampedSeal(size: Dp, modifier: Modifier = Modifier) {
             },
             size = size,
         )
+    }
+}
+
+/**
+ * The answer's verdict in an ink wash under the question. The learner can fold it down to a single line with the
+ * buttons, so it doesn't cover the drawing pad (or the options) they want to compare with the model. It starts open
+ * on every question: the explanation is the point of a wrong answer.
+ */
+@Composable
+fun FeedbackPanel(
+    correct: Boolean,
+    seed: Int,
+    summary: @Composable ColumnScope.() -> Unit,
+    details: @Composable ColumnScope.() -> Unit,
+    actions: @Composable RowScope.() -> Unit,
+) {
+    val ink = LocalInkColors.current
+    var collapsed by rememberSaveable { mutableStateOf(false) }
+    val wash = if (correct) ink.matchaWash.copy(alpha = (ink.matchaWash.alpha * 1.6f).coerceAtMost(1f)) else ink.vermilion.copy(alpha = 0.17f)
+    val toggleLabel = stringResource(if (collapsed) R.string.show_feedback else R.string.hide_feedback)
+    Box(Modifier.fillMaxWidth().padding(horizontal = 6.dp).inkWash(wash, seed = seed)) {
+        Column(Modifier.fillMaxWidth().animateContentSize().padding(horizontal = 22.dp, vertical = if (collapsed) 10.dp else 18.dp)) {
+            Row(
+                Modifier.fillMaxWidth().clickable(onClickLabel = toggleLabel) { collapsed = !collapsed },
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                BrushMark(correct, Modifier.size(if (collapsed) 32.dp else 56.dp))
+                Spacer(Modifier.width(12.dp))
+                Column(Modifier.weight(1f)) {
+                    Text(
+                        stringResource(if (correct) R.string.correct else R.string.not_quite),
+                        style = MaterialTheme.typography.titleLarge,
+                        fontWeight = FontWeight.SemiBold,
+                    )
+                    if (!collapsed) summary()
+                }
+                Icon(
+                    painterResource(if (collapsed) R.drawable.ic_expand_less else R.drawable.ic_expand_more),
+                    contentDescription = toggleLabel,
+                    tint = ink.pencil,
+                    modifier = Modifier.padding(start = 8.dp).size(28.dp),
+                )
+            }
+            if (!collapsed) details()
+            Spacer(Modifier.height(if (collapsed) 8.dp else 12.dp))
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp), content = actions)
+        }
     }
 }

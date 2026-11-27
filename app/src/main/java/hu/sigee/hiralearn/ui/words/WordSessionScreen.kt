@@ -80,9 +80,8 @@ import hu.sigee.hiralearn.ui.components.DrawingPad
 import hu.sigee.hiralearn.ui.components.SoundButton
 import hu.sigee.hiralearn.ui.ink.InkButton
 import hu.sigee.hiralearn.ui.ink.ManuscriptSquare
-import hu.sigee.hiralearn.ui.ink.inkWash
 import hu.sigee.hiralearn.ui.ink.washiPaper
-import hu.sigee.hiralearn.ui.session.BrushMark
+import hu.sigee.hiralearn.ui.session.FeedbackPanel
 import hu.sigee.hiralearn.ui.session.InkProgress
 import hu.sigee.hiralearn.ui.session.MixUpComparison
 import hu.sigee.hiralearn.ui.session.OptionState
@@ -333,23 +332,19 @@ private fun Feedback(evaluation: WordEvaluation, onContinue: (Boolean) -> Unit) 
     val ink = LocalInkColors.current
     val word = evaluation.question.word
     val ok = evaluation.correct
-    val wash = if (ok) ink.matchaWash.copy(alpha = (ink.matchaWash.alpha * 1.6f).coerceAtMost(1f)) else ink.vermilion.copy(alpha = 0.17f)
-    Box(Modifier.fillMaxWidth().padding(horizontal = 6.dp).inkWash(wash, seed = if (ok) 47 else 49)) {
-        Column(Modifier.fillMaxWidth().padding(horizontal = 22.dp, vertical = 18.dp)) {
+    FeedbackPanel(
+        correct = ok,
+        seed = if (ok) 47 else 49,
+        summary = {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                BrushMark(ok, Modifier.size(56.dp))
-                Spacer(Modifier.width(12.dp))
-                Column(Modifier.weight(1f)) {
-                    Text(stringResource(if (ok) R.string.correct else R.string.not_quite), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        WordText(word, misreadPosition = evaluation.misread?.position, fontSize = 24.sp, color = ink.ink)
-                        Text("  " + word.romaji, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
-                        Spacer(Modifier.width(8.dp))
-                        SoundButton(word.text, word.id, size = 36.dp, seed = 29)
-                    }
-                    Text(stringResource(R.string.word_means, wordMeaning(word)), style = MaterialTheme.typography.bodyLarge)
-                }
+                WordText(word, misreadPosition = evaluation.misread?.position, fontSize = 24.sp, color = ink.ink)
+                Text("  " + word.romaji, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                Spacer(Modifier.width(8.dp))
+                SoundButton(word.text, word.id, size = 36.dp, seed = 29)
             }
+            Text(stringResource(R.string.word_means, wordMeaning(word)), style = MaterialTheme.typography.bodyLarge)
+        },
+        details = {
             val target = evaluation.misreadKana
             val readAs = evaluation.misread?.readAs
             if (!ok && target != null && readAs != null) {
@@ -363,17 +358,16 @@ private fun Feedback(evaluation: WordEvaluation, onContinue: (Boolean) -> Unit) 
                 Spacer(Modifier.height(4.dp))
                 Text(drawingFeedback(word, results), style = MaterialTheme.typography.bodyMedium)
             }
-            Spacer(Modifier.height(12.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                // Typing and handwriting can be misjudged (a typo, a messy stroke); a picked option can't.
-                val canOverrule = !ok && (evaluation.answer is WordAnswer.Typed || evaluation.answer is WordAnswer.Drawn)
-                if (canOverrule) {
-                    InkButton(stringResource(R.string.i_was_right), { onContinue(true) }, Modifier.weight(1f), outlined = true, seed = 12)
-                }
-                InkButton(stringResource(R.string.continue_), { onContinue(false) }, Modifier.weight(1f), seed = 3)
+        },
+        actions = {
+            // Typing and handwriting can be misjudged (a typo, a messy stroke); a picked option can't.
+            val canOverrule = !ok && (evaluation.answer is WordAnswer.Typed || evaluation.answer is WordAnswer.Drawn)
+            if (canOverrule) {
+                InkButton(stringResource(R.string.i_was_right), { onContinue(true) }, Modifier.weight(1f), outlined = true, seed = 12)
             }
-        }
-    }
+            InkButton(stringResource(R.string.continue_), { onContinue(false) }, Modifier.weight(1f), seed = 3)
+        },
+    )
 }
 
 /** What went wrong with the first kana that wasn't written right, in the words of the kana session. */

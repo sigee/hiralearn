@@ -67,6 +67,8 @@
     <string name="versus">vs</string>
     <string name="i_was_right">Ich hatte recht</string>
     <string name="continue_">Weiter</string>
+    <string name="hide_feedback">Meldung ausblenden</string>
+    <string name="show_feedback">Meldung einblenden</string>
     <string name="lesson_complete">Lektion geschafft</string>
     <string name="review_complete">Wiederholung geschafft</string>
     <string name="practice_complete">Übung geschafft</string>
