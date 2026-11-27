@@ -67,6 +67,8 @@
     <string name="versus">vs</string>
     <string name="i_was_right">Igazam volt</string>
     <string name="continue_">Tovább</string>
+    <string name="hide_feedback">Üzenet elrejtése</string>
+    <string name="show_feedback">Üzenet megjelenítése</string>
     <string name="lesson_complete">Lecke kész</string>
     <string name="review_complete">Ismétlés kész</string>
     <string name="practice_complete">Gyakorlás kész</string>

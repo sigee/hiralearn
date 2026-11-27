@@ -70,7 +70,6 @@ import hu.sigee.hiralearn.ui.components.SoundButton
 import hu.sigee.hiralearn.ui.components.StrokeOrderView
 import hu.sigee.hiralearn.ui.ink.InkButton
 import hu.sigee.hiralearn.ui.ink.ManuscriptSquare
-import hu.sigee.hiralearn.ui.ink.inkWash
 import hu.sigee.hiralearn.ui.ink.washiPaper
 import hu.sigee.hiralearn.ui.theme.KanaFont
 import hu.sigee.hiralearn.ui.theme.LocalInkColors
@@ -308,26 +307,21 @@ private fun Typing(answered: Boolean, onAnswer: (Answer) -> Unit) {
 
 @Composable
 private fun Feedback(evaluation: Evaluation, onContinue: (Boolean) -> Unit) {
-    val ink = LocalInkColors.current
     val kana = evaluation.question.kana
     val ok = evaluation.correct
     val strokesLib = LocalContext.current.appContainer.strokes
-    val wash = if (ok) ink.matchaWash.copy(alpha = (ink.matchaWash.alpha * 1.6f).coerceAtMost(1f)) else ink.vermilion.copy(alpha = 0.17f)
-    Box(Modifier.fillMaxWidth().padding(horizontal = 6.dp).inkWash(wash, seed = if (ok) 41 else 43)) {
-        Column(Modifier.fillMaxWidth().padding(horizontal = 22.dp, vertical = 18.dp)) {
+    FeedbackPanel(
+        correct = ok,
+        seed = if (ok) 41 else 43,
+        summary = {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                BrushMark(ok, Modifier.size(56.dp))
-                Spacer(Modifier.width(12.dp))
-                Column(Modifier.weight(1f)) {
-                    Text(stringResource(if (ok) R.string.correct else R.string.not_quite), style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.SemiBold)
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Text(kana.char, fontFamily = KanaFont, fontSize = 24.sp)
-                        Text("  " + stringResource(R.string.kana_is, kana.romaji), style = MaterialTheme.typography.titleMedium)
-                        Spacer(Modifier.width(8.dp))
-                        SoundButton(kana, size = 36.dp, seed = 29)
-                    }
-                }
+                Text(kana.char, fontFamily = KanaFont, fontSize = 24.sp)
+                Text("  " + stringResource(R.string.kana_is, kana.romaji), style = MaterialTheme.typography.titleMedium)
+                Spacer(Modifier.width(8.dp))
+                SoundButton(kana, size = 36.dp, seed = 29)
             }
+        },
+        details = {
             val confused = evaluation.confusedWith
             if (!ok && confused != null) {
                 Spacer(Modifier.height(6.dp))
@@ -355,16 +349,15 @@ private fun Feedback(evaluation: Evaluation, onContinue: (Boolean) -> Unit) {
                     StrokeOrderView(it, Modifier.size(140.dp).align(Alignment.CenterHorizontally))
                 }
             }
-            Spacer(Modifier.height(12.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                val canOverrule = !ok && evaluation.answer !is Answer.DontKnow && evaluation.answer !is Answer.Choice
-                if (canOverrule) {
-                    InkButton(stringResource(R.string.i_was_right), { onContinue(true) }, Modifier.weight(1f), outlined = true, seed = 12)
-                }
-                InkButton(stringResource(R.string.continue_), { onContinue(false) }, Modifier.weight(1f), seed = 3)
+        },
+        actions = {
+            val canOverrule = !ok && evaluation.answer !is Answer.DontKnow && evaluation.answer !is Answer.Choice
+            if (canOverrule) {
+                InkButton(stringResource(R.string.i_was_right), { onContinue(true) }, Modifier.weight(1f), outlined = true, seed = 12)
             }
-        }
-    }
+            InkButton(stringResource(R.string.continue_), { onContinue(false) }, Modifier.weight(1f), seed = 3)
+        },
+    )
 }
 
 @OptIn(ExperimentalLayoutApi::class)
