@@ -38,6 +38,7 @@ android {
         versionCode = providers.gradleProperty("hiralearn.versionCode").orNull?.toInt() ?: 1
         // The release tag must match this (v0.1.0); the workflow checks.
         versionName = "0.1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     signingConfigs {
@@ -101,4 +102,13 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    testImplementation(libs.junit)
+
+    // UI tests on a device or emulator: ./gradlew :app:connectedDebugAndroidTest
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
