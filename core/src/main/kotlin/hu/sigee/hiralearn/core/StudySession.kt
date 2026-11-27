@@ -129,7 +129,8 @@ data class SessionSummary(
  * One learning or review session.
  *
  * LEARN: each new kana is introduced, then tested repeatedly with growing gaps and different question
- * types (pick reading, pick kana, trace, pick what you hear, type, draw) interleaved with the other new kana.
+ * types (pick reading, pick kana, trace, pick what you hear, trace again, type, draw) interleaved with the other
+ * new kana.
  * When all its steps are done it becomes learned cards (reading + writing + listening, unless listening is off)
  * in the spaced-repetition schedule.
  *
@@ -142,7 +143,8 @@ data class SessionSummary(
  * DRILL: for each confused pair, both kana are asked in both directions with only the two of them as options,
  * so the learner has to tell exactly those two apart. Scored like PRACTICE.
  *
- * In both modes a wrong answer puts the item back into the session a few questions later, and if the
+ * In both modes a wrong answer puts the item back into the session a few questions later (a failed drawing comes
+ * back as a trace over the guide, then as a drawing from memory), and if the
  * learner mixed it up with another kana, that other kana is marked as not known too (its schedule is
  * reset and it is asked again in this session).
  *
@@ -290,8 +292,15 @@ class StudySession private constructor(
             changed += updated
         }
 
-        // 2. Wrong: ask it again soon in this session.
-        if (!correct) scheduleRetest(step.kana, step.kind, position = 3, partner = step.partner)
+        // 2. Wrong: ask it again soon in this session. A failed drawing is first traced over the guide (so the hand
+        //    practises the right strokes), then drawn from memory again a little later.
+        if (!correct) {
+            if (step.kind == StepKind.WRITING_DRAWING && drawingEnabled) {
+                scheduleRetest(step.kana, StepKind.WRITING_TRACE, position = 3, partner = null, then = StepKind.WRITING_DRAWING)
+            } else {
+                scheduleRetest(step.kana, step.kind, position = 3, partner = step.partner)
+            }
+        }
 
         // 3. Mixed up with another kana: that one is not known either.
         if (confused != null) {
@@ -342,7 +351,8 @@ class StudySession private constructor(
         return cards
     }
 
-    private fun scheduleRetest(kana: Kana, kind: StepKind, position: Int, partner: Kana?) {
+    /** [then]: a follow-up step [RETEST_FOLLOW_UP_GAP] steps after the retest, counted as part of the same retest. */
+    private fun scheduleRetest(kana: Kana, kind: StepKind, position: Int, partner: Kana?, then: StepKind? = null) {
         val key = kana.id to kind.skill
         val count = retestCount.getOrDefault(key, 0)
         if (count >= MAX_RETESTS) return
@@ -351,6 +361,7 @@ class StudySession private constructor(
         retestCount[key] = count + 1
         val index = position.coerceAtMost(queue.size)
         queue.add(index, Step(kana, kind, partner))
+        if (then != null) queue.add((index + 1 + RETEST_FOLLOW_UP_GAP).coerceAtMost(queue.size), Step(kana, then, partner))
         cachedTask = null
     }
 
@@ -418,10 +429,11 @@ class StudySession private constructor(
         const val DEFAULT_LEARN_BATCH = 5
         const val DEFAULT_REVIEW_LIMIT = 20
         private const val MAX_RETESTS = 3
+        private const val RETEST_FOLLOW_UP_GAP = 2
         private const val LISTENING_HEADSTART_DROP = 2
 
         /** When each step of a new kana happens relative to its introduction: growing gaps. */
-        private val LEARN_OFFSETS = intArrayOf(0, 1, 4, 8, 13, 19, 26)
+        private val LEARN_OFFSETS = intArrayOf(0, 1, 4, 8, 13, 17, 22, 28)
         private const val LEARN_STAGGER = 4
 
         fun normalizeTyped(text: String): String =
@@ -487,6 +499,8 @@ class StudySession private constructor(
                     add(StepKind.WRITING_CHOICE)
                     if (drawable) add(StepKind.WRITING_TRACE)
                     if (listeningEnabled) add(StepKind.LISTENING_CHOICE)
+                    // Traced twice, so the hand learns the strokes before drawing them from memory.
+                    if (drawable) add(StepKind.WRITING_TRACE)
                     add(StepKind.READING_TYPING)
                     add(if (drawable) StepKind.WRITING_DRAWING else StepKind.WRITING_CHOICE)
                 }

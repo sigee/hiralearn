@@ -77,7 +77,8 @@ class LearnOrderTest {
         assertEquals(
             listOf(
                 "あ:intro", "あ:reading_choice", "あ:writing_choice", "い:intro", "い:reading_choice",
-                "あ:trace", "い:writing_choice", "い:trace", "あ:listening_choice", "い:listening_choice", "あ:reading_typing", "い:reading_typing",
+                "あ:trace", "い:writing_choice", "い:trace", "あ:listening_choice", "あ:trace", "い:listening_choice", "い:trace",
+                "あ:reading_typing", "い:reading_typing",
                 "あ:writing_drawing", "い:writing_drawing",
             ),
             steps,

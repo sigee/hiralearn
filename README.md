@@ -13,10 +13,12 @@ longer gaps, mixed in with the other new kana:
 2. pick the kana for a reading
 3. trace the kana over a faint guide
 4. hear the kana and pick it
-5. type the reading
-6. write the kana from memory
+5. trace it once more, so the hand learns the strokes
+6. type the reading
+7. write the kana from memory
 
-When all its steps are done, the kana is *learned*. It gets three cards, **reading**, **writing** and **listening**,
+A drawing that goes wrong (in Learn, Review or Practice) comes back a few questions later as a trace over the guide,
+then once more from memory. When all its steps are done, the kana is *learned*. It gets three cards, **reading**, **writing** and **listening**,
 each with its own schedule.
 
 **Review** asks the cards that are due. The question type gets harder as a card gets stronger (multiple choice → typing;
