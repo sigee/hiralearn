@@ -21,6 +21,11 @@ Requires JDK 17+ and the Android SDK (`ANDROID_HOME` or `local.properties` with 
 ```
 ./gradlew :core:test            # fast JVM tests for all learning logic; run after any core change
 ./gradlew :core:pitest          # mutation testing of core (~1 min); report in core/build/reports/pitest/
+./gradlew :app:testDebugUnitTest # JVM tests of app-side logic (app/src/test)
+./gradlew :app:connectedDebugAndroidTest # Compose UI tests on a device/emulator (app/src/androidTest); uninstalls
+                                # the app afterwards, so to keep progress on the device use :app:installDebug
+                                # :app:installDebugAndroidTest and `adb shell am instrument -w
+                                # hu.sigee.hiralearn.test/androidx.test.runner.AndroidJUnitRunner`
 ./gradlew :app:assembleDebug    # build the app (APK in app/build/outputs/apk/debug/)
 ./gradlew :app:installDebug     # install on a connected device/emulator
 ./gradlew :app:assembleRelease  # R8-minified build; run when touching dependencies or resources
