@@ -69,6 +69,11 @@
     <string name="continue_">Weiter</string>
     <string name="hide_feedback">Meldung ausblenden</string>
     <string name="show_feedback">Meldung einblenden</string>
+    <string name="feedback_panel">Nach einer Antwort</string>
+    <string name="feedback_panel_hint">Ob die Meldung unter der Frage geöffnet oder eingeklappt erscheint. Klapp sie ein, um deine Zeichnung oder die Antworten zu sehen.</string>
+    <string name="feedback_remember">Wie zuletzt</string>
+    <string name="feedback_open">Geöffnet</string>
+    <string name="feedback_folded">Eingeklappt</string>
     <string name="lesson_complete">Lektion geschafft</string>
     <string name="review_complete">Wiederholung geschafft</string>
     <string name="practice_complete">Übung geschafft</string>

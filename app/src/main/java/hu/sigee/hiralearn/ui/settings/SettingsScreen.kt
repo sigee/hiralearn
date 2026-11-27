@@ -71,6 +71,7 @@ import hu.sigee.hiralearn.R
 import hu.sigee.hiralearn.appContainer
 import hu.sigee.hiralearn.audio.KanaVoice
 import hu.sigee.hiralearn.core.QuestionTypes
+import hu.sigee.hiralearn.data.FeedbackPanelMode
 import hu.sigee.hiralearn.data.ThemeMode
 import hu.sigee.hiralearn.ui.ink.InkButton
 import hu.sigee.hiralearn.ui.ink.inkWash
@@ -89,6 +90,7 @@ fun SettingsScreen(onBack: () -> Unit, onLicenses: () -> Unit) {
     val types by container.settings.questionTypes.collectAsStateWithLifecycle()
     val themeMode by container.settings.themeMode.collectAsStateWithLifecycle()
     val reminder by container.settings.reminder.collectAsStateWithLifecycle()
+    val feedbackMode by container.settings.feedbackMode.collectAsStateWithLifecycle()
     val voiceStatus by container.voice.status.collectAsStateWithLifecycle()
     // Coming back from installing a Japanese voice should turn listening on without restarting the app.
     LifecycleResumeEffect(Unit) {
@@ -169,6 +171,16 @@ fun SettingsScreen(onBack: () -> Unit, onLicenses: () -> Unit) {
                         }
                     }, outlined = true, seed = 11)
                 }
+            }
+
+            Section(stringResource(R.string.feedback_panel), seed = 58) {
+                Text(
+                    stringResource(R.string.feedback_panel_hint),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                Spacer(Modifier.height(8.dp))
+                FeedbackModeChoice(feedbackMode, container.settings::setFeedbackMode)
             }
 
             Section(stringResource(R.string.progress), seed = 53) {
@@ -259,6 +271,31 @@ private fun ThemeChoice(selected: ThemeMode, onSelect: (ThemeMode) -> Unit) {
     val ink = LocalInkColors.current
     FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
         listOf(ThemeMode.SYSTEM to R.string.theme_system, ThemeMode.LIGHT to R.string.theme_paper, ThemeMode.DARK to R.string.theme_night).forEach { (mode, label) ->
+            FilterChip(
+                selected = selected == mode,
+                onClick = { onSelect(mode) },
+                label = { Text(stringResource(label)) },
+                colors = FilterChipDefaults.filterChipColors(
+                    containerColor = ink.sheet,
+                    selectedContainerColor = ink.ink,
+                    selectedLabelColor = ink.sheet,
+                ),
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun FeedbackModeChoice(selected: FeedbackPanelMode, onSelect: (FeedbackPanelMode) -> Unit) {
+    val ink = LocalInkColors.current
+    val options = listOf(
+        FeedbackPanelMode.REMEMBER to R.string.feedback_remember,
+        FeedbackPanelMode.OPEN to R.string.feedback_open,
+        FeedbackPanelMode.FOLDED to R.string.feedback_folded,
+    )
+    FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        options.forEach { (mode, label) ->
             FilterChip(
                 selected = selected == mode,
                 onClick = { onSelect(mode) },
