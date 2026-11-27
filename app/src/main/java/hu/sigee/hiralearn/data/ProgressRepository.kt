@@ -225,6 +225,19 @@ class SettingsStore(context: Context) {
         _questionTypes.value = types
     }
 
+    private val _autoAdvance = MutableStateFlow(prefs.getBoolean(KEY_AUTO_ADVANCE, false))
+
+    /**
+     * Whether a right answer moves on to the next question by itself. Off by default, so every task ends the same way:
+     * the learner reads the feedback and taps Continue. Wrong answers always wait.
+     */
+    val autoAdvance: StateFlow<Boolean> = _autoAdvance.asStateFlow()
+
+    fun setAutoAdvance(on: Boolean) {
+        prefs.edit { putBoolean(KEY_AUTO_ADVANCE, on) }
+        _autoAdvance.value = on
+    }
+
     private val _reminder = MutableStateFlow(
         ReminderSettings(
             enabled = prefs.getBoolean(KEY_REMINDER_ON, false),
@@ -273,5 +286,6 @@ class SettingsStore(context: Context) {
         const val KEY_DRAWING = "drawing_enabled"
         const val KEY_LISTENING = "listening_enabled"
         const val KEY_THEME = "theme_mode"
+        const val KEY_AUTO_ADVANCE = "auto_advance"
     }
 }

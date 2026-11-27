@@ -106,6 +106,8 @@
     <string name="qt_drawing_hint">Írd le a kanát kézzel. Új kanák tanulásakor az átrajzolásnál és az írásnál is ez számít.</string>
     <string name="qt_listening">Hallás</string>
     <string name="qt_listening_hint">Meghallasz egy kanát, és kiválasztod vagy leírod. A telefon japán felolvasóhangját használja.</string>
+    <string name="auto_advance">Automatikus továbblépés</string>
+    <string name="auto_advance_hint">Helyes válasz után magától jön a következő feladat. Hiba után mindig megvárja, hogy továbblépj.</string>
     <string name="no_japanese_voice">Ezen a telefonon nincs japán felolvasóhang, ezért a hallás ki van kapcsolva. Telepíts egyet, aztán gyere vissza.</string>
     <string name="install_voice">Japán hang telepítése</string>
     <string name="no_voice_settings">Nem található felolvasó-beállítás ezen a telefonon.</string>

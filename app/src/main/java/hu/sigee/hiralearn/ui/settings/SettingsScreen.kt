@@ -91,6 +91,7 @@ fun SettingsScreen(onBack: () -> Unit, onLicenses: () -> Unit) {
     val themeMode by container.settings.themeMode.collectAsStateWithLifecycle()
     val reminder by container.settings.reminder.collectAsStateWithLifecycle()
     val feedbackMode by container.settings.feedbackMode.collectAsStateWithLifecycle()
+    val autoAdvance by container.settings.autoAdvance.collectAsStateWithLifecycle()
     val voiceStatus by container.voice.status.collectAsStateWithLifecycle()
     // Coming back from installing a Japanese voice should turn listening on without restarting the app.
     LifecycleResumeEffect(Unit) {
@@ -181,6 +182,18 @@ fun SettingsScreen(onBack: () -> Unit, onLicenses: () -> Unit) {
                 )
                 Spacer(Modifier.height(8.dp))
                 FeedbackModeChoice(feedbackMode, container.settings::setFeedbackMode)
+                Spacer(Modifier.height(8.dp))
+                Row(Modifier.fillMaxWidth().padding(vertical = 6.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Column(Modifier.weight(1f)) {
+                        Text(stringResource(R.string.auto_advance), style = MaterialTheme.typography.bodyLarge)
+                        Text(
+                            stringResource(R.string.auto_advance_hint),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        )
+                    }
+                    Switch(checked = autoAdvance, onCheckedChange = container.settings::setAutoAdvance, colors = inkSwitchColors())
+                }
             }
 
             Section(stringResource(R.string.progress), seed = 53) {

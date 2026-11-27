@@ -104,6 +104,7 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     // UI tests on a device or emulator: ./gradlew :app:connectedDebugAndroidTest
     androidTestImplementation(libs.androidx.test.runner)

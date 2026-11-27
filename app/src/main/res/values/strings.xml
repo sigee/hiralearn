@@ -107,6 +107,8 @@
     <string name="qt_drawing_hint">Write the kana by hand. Also used for tracing and writing when learning new kana.</string>
     <string name="qt_listening">Listening</string>
     <string name="qt_listening_hint">Hear a kana, then pick or write it. Uses the phone\'s Japanese text-to-speech voice.</string>
+    <string name="auto_advance">Move on automatically</string>
+    <string name="auto_advance_hint">After a right answer the next question comes by itself. After a mistake the app always waits for you.</string>
     <string name="no_japanese_voice">This phone has no Japanese text-to-speech voice, so listening is off. Install one, then come back.</string>
     <string name="install_voice">Install a Japanese voice</string>
     <string name="no_voice_settings">No text-to-speech settings found on this phone.</string>
