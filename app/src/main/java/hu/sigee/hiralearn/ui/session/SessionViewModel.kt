@@ -8,16 +8,15 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.sigee.hiralearn.AppContainer
 import hu.sigee.hiralearn.audio.KanaVoice
 import hu.sigee.hiralearn.core.Answer
+import hu.sigee.hiralearn.core.AutoAdvance
 import hu.sigee.hiralearn.core.Evaluation
-import hu.sigee.hiralearn.core.QuestionType
 import hu.sigee.hiralearn.core.SessionMode
 import hu.sigee.hiralearn.core.SessionSummary
 import hu.sigee.hiralearn.core.SessionUpdate
 import hu.sigee.hiralearn.core.StudySession
 import hu.sigee.hiralearn.core.Task
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
+
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -57,7 +56,7 @@ class SessionViewModel(private val mode: SessionMode, private val container: App
     private var session: StudySession? = null
     private var stepKey = 0
     private var evaluation: Evaluation? = null
-    private var autoAdvance: Job? = null
+    private val autoAdvance = AutoAdvanceTimer(viewModelScope)
     private val saveLock = Mutex()
 
     init {
@@ -93,20 +92,12 @@ class SessionViewModel(private val mode: SessionMode, private val container: App
         val result = s.evaluate(answer)
         evaluation = result
         publish()
-        // Like Memrise: right answers to quick questions move on by themselves.
-        val drawn = result.question.type == QuestionType.WRITING_DRAWING || result.question.type == QuestionType.LISTENING_DRAWING
-        if (result.correct && !drawn) {
-            autoAdvance = viewModelScope.launch {
-                delay(AUTO_ADVANCE_MS)
-                onContinue()
-            }
-        }
+        autoAdvance.schedule(AutoAdvance.delayAfter(result.correct, container.settings.autoAdvance.value)) { onContinue() }
     }
 
     /** Moves on after feedback. [acceptAsCorrect] = "I was right" (typo or handwriting misread). */
     fun onContinue(acceptAsCorrect: Boolean = false) {
-        autoAdvance?.cancel()
-        autoAdvance = null
+        autoAdvance.cancel()
         val s = session ?: return
         val result = evaluation ?: return
         evaluation = null
@@ -138,7 +129,6 @@ class SessionViewModel(private val mode: SessionMode, private val container: App
     }
 
     companion object {
-        private const val AUTO_ADVANCE_MS = 900L
         private const val VOICE_WAIT_MS = 2_000L
 
         fun factory(mode: SessionMode, container: AppContainer): ViewModelProvider.Factory = viewModelFactory {

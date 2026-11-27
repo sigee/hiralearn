@@ -106,6 +106,8 @@
     <string name="qt_drawing_hint">Schreibe das Kana von Hand. Gilt auch fürs Nachzeichnen und Schreiben beim Lernen neuer Kana.</string>
     <string name="qt_listening">Hören</string>
     <string name="qt_listening_hint">Hör ein Kana und wähle oder schreibe es. Nutzt die japanische Sprachausgabe des Handys.</string>
+    <string name="auto_advance">Automatisch weiter</string>
+    <string name="auto_advance_hint">Nach einer richtigen Antwort kommt die nächste Aufgabe von selbst. Nach einem Fehler wartet die App immer auf dich.</string>
     <string name="no_japanese_voice">Auf diesem Handy gibt es keine japanische Sprachausgabe, deshalb ist Hören aus. Installiere eine und komm dann zurück.</string>
     <string name="install_voice">Japanische Stimme installieren</string>
     <string name="no_voice_settings">Keine Einstellungen für die Sprachausgabe auf diesem Handy gefunden.</string>

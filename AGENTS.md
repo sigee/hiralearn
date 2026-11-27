@@ -41,7 +41,7 @@ number. A release is a `v<versionName>` tag on `master` (see README → Releasin
 Backup (`res/xml/data_extraction_rules.xml`, `backup_rules.xml`) includes only `hiralearn.db` (with WAL files) and the
 `settings` prefs. A new database file or prefs file that holds user data must be added to both.
 
-Always run `:core:test` and `:app:assembleDebug` before calling a change done.
+Always run `:core:test`, `:app:testDebugUnitTest` and `:app:assembleDebug` before calling a change done.
 After changing learning logic in `core`, also run `:core:pitest`: it fails below a 90% mutation kill rate. If a new
 mutant survives, add a test that pins the behaviour (see `MutationGapTest.kt`) rather than lowering the threshold.
 

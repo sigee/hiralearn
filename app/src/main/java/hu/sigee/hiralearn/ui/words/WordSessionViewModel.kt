@@ -7,13 +7,16 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import hu.sigee.hiralearn.AppContainer
 import hu.sigee.hiralearn.audio.KanaVoice
+import hu.sigee.hiralearn.core.AutoAdvance
 import hu.sigee.hiralearn.core.SessionUpdate
 import hu.sigee.hiralearn.core.WordAnswer
 import hu.sigee.hiralearn.core.WordEvaluation
 import hu.sigee.hiralearn.core.WordQuestion
 import hu.sigee.hiralearn.core.WordSession
 import hu.sigee.hiralearn.core.WordSummary
+import hu.sigee.hiralearn.ui.session.AutoAdvanceTimer
 import kotlinx.coroutines.Dispatchers
+
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -49,6 +52,7 @@ class WordSessionViewModel(private val container: AppContainer) : ViewModel() {
     private var session: WordSession? = null
     private var stepKey = 0
     private var evaluation: WordEvaluation? = null
+    private val autoAdvance = AutoAdvanceTimer(viewModelScope)
     private val saveLock = Mutex()
 
     init {
@@ -66,8 +70,10 @@ class WordSessionViewModel(private val container: AppContainer) : ViewModel() {
     fun onAnswer(answer: WordAnswer) {
         val s = session ?: return
         if (evaluation != null || s.isFinished) return
-        evaluation = s.evaluate(answer)
+        val result = s.evaluate(answer)
+        evaluation = result
         publish()
+        autoAdvance.schedule(AutoAdvance.delayAfter(result.correct, container.settings.autoAdvance.value)) { onContinue() }
     }
 
     fun onSkipDrawing() {
@@ -78,8 +84,9 @@ class WordSessionViewModel(private val container: AppContainer) : ViewModel() {
         publish()
     }
 
-    /** Moves on after feedback; no auto-advance, so the learner has time to read the meaning. */
+    /** Moves on after feedback. [acceptAsCorrect] = "I was right" (typo or handwriting misread). */
     fun onContinue(acceptAsCorrect: Boolean = false) {
+        autoAdvance.cancel()
         val s = session ?: return
         val result = evaluation ?: return
         evaluation = null
