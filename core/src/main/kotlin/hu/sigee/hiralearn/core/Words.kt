@@ -174,6 +174,10 @@ object Words {
 
     fun readable(states: Map<CardId, CardState>): List<Word> = all.filter { isReadable(it, states) }
 
+    /** How well [word] can be read: the lowest reading level among its kana, or null if it can't be read yet. */
+    fun readingLevel(word: Word, states: Map<CardId, CardState>): Int? =
+        if (!isReadable(word, states)) null else word.kana.minOf { states.getValue(CardId(it.id, Skill.READING)).level }
+
     /** Words that became readable because the learner just learned [newKana]: the reward for finishing a lesson. */
     fun unlockedBy(newKana: Collection<Kana>, states: Map<CardId, CardState>): List<Word> {
         val ids = newKana.map { it.id }.toSet()

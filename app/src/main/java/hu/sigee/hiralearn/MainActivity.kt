@@ -13,6 +13,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.activity.SystemBarStyle
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -32,6 +33,8 @@ import hu.sigee.hiralearn.ui.session.SessionViewModel
 import hu.sigee.hiralearn.ui.settings.LicensesScreen
 import hu.sigee.hiralearn.ui.settings.SettingsScreen
 import hu.sigee.hiralearn.ui.theme.HiraLearnTheme
+import hu.sigee.hiralearn.ui.words.GlossaryScreen
+import hu.sigee.hiralearn.ui.words.GlossaryViewModel
 import hu.sigee.hiralearn.ui.words.WordSessionScreen
 import hu.sigee.hiralearn.ui.words.WordSessionViewModel
 
@@ -82,6 +85,7 @@ private fun HiraLearnNavHost(container: AppContainer) {
                 onReview = { nav.navigate("session/${SessionMode.REVIEW}") },
                 onPractice = { nav.navigate("session/${SessionMode.PRACTICE}") },
                 onReadWords = { nav.navigate("words") },
+                onGlossary = { nav.navigate("glossary") },
                 onDrill = { nav.navigate("session/${SessionMode.DRILL}") },
                 onKana = { nav.navigate("kana/${it.id}") },
                 onKanaChart = { nav.navigate("chart") },
@@ -98,6 +102,17 @@ private fun HiraLearnNavHost(container: AppContainer) {
         }
         composable("words") {
             WordSessionScreen(viewModel = viewModel(factory = WordSessionViewModel.factory(container)), onExit = back)
+        }
+        composable("words/{ids}") { entry ->
+            val ids = entry.arguments?.getString("ids").orEmpty().split(",").filter { it.isNotEmpty() }
+            WordSessionScreen(viewModel = viewModel(factory = WordSessionViewModel.factory(container, ids)), onExit = back)
+        }
+        composable("glossary") {
+            GlossaryScreen(
+                viewModel = viewModel(factory = GlossaryViewModel.factory(container)),
+                onPractice = { words -> nav.navigate("words/" + words.joinToString(",") { Uri.encode(it.id) }) },
+                onBack = back,
+            )
         }
         composable("chart") {
             KanaChartScreen(
