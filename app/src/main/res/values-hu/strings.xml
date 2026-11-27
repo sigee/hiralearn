@@ -69,6 +69,11 @@
     <string name="continue_">Tovább</string>
     <string name="hide_feedback">Üzenet elrejtése</string>
     <string name="show_feedback">Üzenet megjelenítése</string>
+    <string name="feedback_panel">Válasz után</string>
+    <string name="feedback_panel_hint">A kérdés alatti üzenet nyitva vagy összecsukva jelenjen meg. Csukd össze, hogy lásd a rajzodat vagy a válaszlehetőségeket.</string>
+    <string name="feedback_remember">Ahogy hagytam</string>
+    <string name="feedback_open">Nyitva</string>
+    <string name="feedback_folded">Összecsukva</string>
     <string name="lesson_complete">Lecke kész</string>
     <string name="review_complete">Ismétlés kész</string>
     <string name="practice_complete">Gyakorlás kész</string>

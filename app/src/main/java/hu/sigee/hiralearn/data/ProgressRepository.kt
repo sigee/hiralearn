@@ -167,6 +167,21 @@ private fun ReviewEvent.toEntity() = ReviewEventEntity(
 /** Light or dark ("night ink") look; SYSTEM follows the phone setting. */
 enum class ThemeMode { SYSTEM, LIGHT, DARK }
 
+/** How the answer message under a question starts: always open, always folded, or as the learner last left it. */
+enum class FeedbackPanelMode {
+    OPEN,
+    FOLDED,
+    REMEMBER,
+    ;
+
+    /** Whether the message starts folded, given whether the learner left the previous one [lastFolded]. */
+    fun startsFolded(lastFolded: Boolean): Boolean = when (this) {
+        OPEN -> false
+        FOLDED -> true
+        REMEMBER -> lastFolded
+    }
+}
+
 /** Whether the daily review reminder is on, and at what time of day. */
 data class ReminderSettings(val enabled: Boolean = false, val time: LocalTime = Reminder.DEFAULT_TIME)
 
@@ -228,7 +243,29 @@ class SettingsStore(context: Context) {
         _reminder.value = settings
     }
 
+    private val _feedbackMode = MutableStateFlow(
+        runCatching { FeedbackPanelMode.valueOf(prefs.getString(KEY_FEEDBACK_MODE, null) ?: "") }.getOrDefault(FeedbackPanelMode.REMEMBER),
+    )
+    val feedbackMode: StateFlow<FeedbackPanelMode> = _feedbackMode.asStateFlow()
+
+    fun setFeedbackMode(mode: FeedbackPanelMode) {
+        prefs.edit { putString(KEY_FEEDBACK_MODE, mode.name) }
+        _feedbackMode.value = mode
+    }
+
+    /** Whether the next answer message starts folded, according to [feedbackMode]. */
+    fun feedbackStartsFolded(): Boolean = _feedbackMode.value.startsFolded(feedbackLastFolded)
+
+    /** Whether the learner left the last answer message folded; used by [FeedbackPanelMode.REMEMBER]. */
+    val feedbackLastFolded: Boolean get() = prefs.getBoolean(KEY_FEEDBACK_FOLDED, false)
+
+    fun setFeedbackFolded(folded: Boolean) {
+        prefs.edit { putBoolean(KEY_FEEDBACK_FOLDED, folded) }
+    }
+
     private companion object {
+        const val KEY_FEEDBACK_MODE = "feedback_panel_mode"
+        const val KEY_FEEDBACK_FOLDED = "feedback_panel_folded"
         const val KEY_REMINDER_ON = "reminder_enabled"
         const val KEY_REMINDER_MINUTE = "reminder_minute_of_day"
         const val KEY_CHOICE = "choice_enabled"

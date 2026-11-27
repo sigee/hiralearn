@@ -70,6 +70,11 @@
     <string name="continue_">Continue</string>
     <string name="hide_feedback">Hide the message</string>
     <string name="show_feedback">Show the message</string>
+    <string name="feedback_panel">After an answer</string>
+    <string name="feedback_panel_hint">Whether the message under the question starts open or folded. Fold it to see your drawing or the options behind it.</string>
+    <string name="feedback_remember">As I left it</string>
+    <string name="feedback_open">Open</string>
+    <string name="feedback_folded">Folded</string>
     <string name="lesson_complete">Lesson complete</string>
     <string name="review_complete">Review complete</string>
     <string name="practice_complete">Practice complete</string>

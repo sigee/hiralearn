@@ -1,6 +1,8 @@
 package hu.sigee.hiralearn.ui.session
 
 import hu.sigee.hiralearn.R
+import hu.sigee.hiralearn.appContainer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.FastOutSlowInEasing
@@ -209,8 +211,8 @@ fun StampedSeal(size: Dp, modifier: Modifier = Modifier) {
 
 /**
  * The answer's verdict in an ink wash under the question. The learner can fold it down to a single line with the
- * buttons, so it doesn't cover the drawing pad (or the options) they want to compare with the model. It starts open
- * on every question: the explanation is the point of a wrong answer.
+ * buttons, so it doesn't cover the drawing pad (or the options) they want to compare with the model. Whether it starts
+ * open or folded is a setting (open, folded, or as last left).
  */
 @Composable
 fun FeedbackPanel(
@@ -221,13 +223,17 @@ fun FeedbackPanel(
     actions: @Composable RowScope.() -> Unit,
 ) {
     val ink = LocalInkColors.current
-    var collapsed by rememberSaveable { mutableStateOf(false) }
+    val settings = LocalContext.current.appContainer.settings
+    var collapsed by rememberSaveable { mutableStateOf(settings.feedbackStartsFolded()) }
     val wash = if (correct) ink.matchaWash.copy(alpha = (ink.matchaWash.alpha * 1.6f).coerceAtMost(1f)) else ink.vermilion.copy(alpha = 0.17f)
     val toggleLabel = stringResource(if (collapsed) R.string.show_feedback else R.string.hide_feedback)
     Box(Modifier.fillMaxWidth().padding(horizontal = 6.dp).inkWash(wash, seed = seed)) {
         Column(Modifier.fillMaxWidth().animateContentSize().padding(horizontal = 22.dp, vertical = if (collapsed) 10.dp else 18.dp)) {
             Row(
-                Modifier.fillMaxWidth().clickable(onClickLabel = toggleLabel) { collapsed = !collapsed },
+                Modifier.fillMaxWidth().clickable(onClickLabel = toggleLabel) {
+                    collapsed = !collapsed
+                    settings.setFeedbackFolded(collapsed)
+                },
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 BrushMark(correct, Modifier.size(if (collapsed) 32.dp else 56.dp))
