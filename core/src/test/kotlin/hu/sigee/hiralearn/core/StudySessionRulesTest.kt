@@ -354,6 +354,7 @@ class StudySessionRulesTest {
                 QuestionType.WRITING_CHOICE to false,
                 QuestionType.WRITING_DRAWING to true,
                 QuestionType.LISTENING_CHOICE to false,
+                QuestionType.WRITING_DRAWING to true,
                 QuestionType.READING_TYPING to false,
                 QuestionType.WRITING_DRAWING to false,
             ),
@@ -483,6 +484,54 @@ class StudySessionRulesTest {
         val rest = runSession(session).questions()
         assertTrue(rest.isNotEmpty())
         assertTrue(rest.all { it.type == QuestionType.WRITING_CHOICE }, rest.map { it.kana.char to it.type }.toString())
+    }
+
+    @Test
+    fun aFailedDrawingIsTracedThenDrawnFromMemory() {
+        val states = learned("あ", level = 5, due = 0).filterKeys { it.skill == Skill.WRITING }
+        val session = StudySession.review(states, strokes, now = 0, types = QuestionTypes(choice = false), random = Random(0))!!
+        session.commit(session.evaluate(Answer.DontKnow), 0)
+        val rest = runSession(session).questions().map { Triple(it.kana, it.type, it.guided) }
+        assertEquals(
+            listOf(Triple(kana("あ"), QuestionType.WRITING_DRAWING, true), Triple(kana("あ"), QuestionType.WRITING_DRAWING, false)),
+            rest,
+        )
+    }
+
+    @Test
+    fun theDrawingAfterTheTraceComesAFewStepsLater() {
+        val states = learned("あ", "い", "う", "え", "お", "か", "き", level = 5, due = 0).filterKeys { it.skill == Skill.WRITING }
+        val session = StudySession.review(states, strokes, now = 0, types = QuestionTypes(choice = false), random = Random(0))!!
+        val failed = (session.current as Task.Question).kana
+        session.commit(session.evaluate(Answer.DontKnow), 0)
+        val rest = runSession(session).questions()
+        val retests = rest.withIndex().filter { it.value.kana == failed }
+        assertEquals(listOf(3 to true, 6 to false), retests.map { it.index to it.value.guided })
+    }
+
+    @Test
+    fun aFailedLearnDrawingIsTracedBeforeTheKanaIsLearned() {
+        val session = StudySession.learn(emptyMap(), strokes, batchSize = 1, random = Random(0))!!
+        while (true) {
+            val t = session.current!!
+            if (t is Task.Question && t.type == QuestionType.WRITING_DRAWING && !t.guided) break
+            if (t is Task.Introduce) session.acknowledgeIntroduction(0) else session.commit(session.evaluate(correctAnswer(t as Task.Question)), 0)
+        }
+        session.commit(session.evaluate(Answer.DontKnow), 0)
+        assertTrue(session.summary.learned.isEmpty())
+        val rest = runSession(session).questions().map { it.type to it.guided }
+        assertEquals(listOf(QuestionType.WRITING_DRAWING to true, QuestionType.WRITING_DRAWING to false), rest)
+        assertEquals(listOf(kana("あ")), session.summary.learned)
+    }
+
+    @Test
+    fun aFailedListeningDrawingIsNotTraced() {
+        val states = learned("あ", level = 5, due = 0).filterKeys { it.skill == Skill.LISTENING }
+        val session = StudySession.review(states, strokes, now = 0, types = QuestionTypes(choice = false), random = Random(0))!!
+        assertEquals(QuestionType.LISTENING_DRAWING, (session.current as Task.Question).type)
+        session.commit(session.evaluate(Answer.DontKnow), 0)
+        val rest = runSession(session).questions().map { it.type to it.guided }
+        assertEquals(listOf(QuestionType.LISTENING_DRAWING to false), rest)
     }
 
     @Test
