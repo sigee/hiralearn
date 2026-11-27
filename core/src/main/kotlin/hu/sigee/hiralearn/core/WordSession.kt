@@ -190,7 +190,8 @@ class WordSession private constructor(
     private fun scheduleRetest(step: Step, position: Int) {
         val count = retests.getOrDefault(step.word.id, 0)
         if (count >= MAX_RETESTS) return
-        if (queue.take(position + 1).any { it.word == step.word }) return
+        // Same word *and* skill: a word picked alone is queued once per skill, and a miss must still come back.
+        if (queue.take(position + 1).any { it.word == step.word && it.type.skill == step.type.skill }) return
         retests[step.word.id] = count + 1
         queue.add(position.coerceAtMost(queue.size), step)
         cached = null
@@ -298,6 +299,31 @@ class WordSession private constructor(
                     Step(word, session.typeOf(word, skill, t))
                 },
             )
+            return session
+        }
+
+        /**
+         * A session for words the learner picked (the glossary): each readable word of [words] is asked once in every
+         * skill of [types] that all its kana have cards for, in random order. Null if none of them can be read yet.
+         * Answers count as in [start]: a right one moves no card, a mix-up resets the kana involved.
+         */
+        fun startWith(
+            words: Collection<Word>,
+            states: Map<CardId, CardState>,
+            strokes: StrokeLibrary,
+            types: QuestionTypes = QuestionTypes(),
+            scheduler: Scheduler = Scheduler(),
+            random: Random = Random.Default,
+            newEventId: () -> String = { UUID.randomUUID().toString() },
+        ): WordSession? {
+            val readable = words.distinct().filter { Words.isReadable(it, states) }
+            if (readable.isEmpty()) return null
+            val t = if (types.isValid) types else QuestionTypes(listening = types.listening)
+            val session = WordSession(states.toMutableMap(), strokes, t.drawing, scheduler, random, newEventId)
+            val steps = readable.flatMap { word ->
+                Skill.entries.filter { it in t.skills && hasCards(word, it, states) }.map { Step(word, session.typeOf(word, it, t)) }
+            }
+            session.addInitialSteps(steps.shuffled(random))
             return session
         }
     }

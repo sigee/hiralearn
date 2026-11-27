@@ -1,5 +1,6 @@
 package hu.sigee.hiralearn.ui
 
+import android.content.res.Resources
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringArrayResource
@@ -31,6 +32,9 @@ fun formatDuration(ms: Long): String {
 /** Localised meaning of a word; core keeps only the word, the app translates by word id. */
 @Composable
 fun wordMeaning(word: Word): String = wordMeanings[word.id]?.let { stringResource(it) }.orEmpty()
+
+/** [wordMeaning] outside composition (e.g. to search the glossary). */
+fun wordMeaning(word: Word, resources: Resources): String = wordMeanings[word.id]?.let { resources.getString(it) }.orEmpty()
 
 /** Word id → its meaning. A new word in core needs an entry here and a `word_<id>` string in every language. */
 private val wordMeanings: Map<String, Int> = mapOf(

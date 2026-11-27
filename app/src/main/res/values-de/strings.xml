@@ -154,6 +154,19 @@
     <string name="nothing_words">Schließe deine erste Lektion ab, dann gibt es Wörter zu lesen.</string>
     <string name="new_words">Neue Wörter zum Lesen</string>
     <string name="read_them_now">Jetzt lesen</string>
+    <string name="glossary">Wörterliste</string>
+    <string name="glossary_hint">Tippe auf ein Wort, um nur dieses zu üben: Lesen, Schreiben und Hören.</string>
+    <string name="glossary_search">Suchen (Kana, Rōmaji oder Bedeutung)</string>
+    <string name="glossary_no_match">Kein passendes Wort.</string>
+    <string name="practise_word">Dieses Wort üben</string>
+    <plurals name="words_locked">
+        <item quantity="one">%d weiteres Wort kommt mit späteren Lektionen</item>
+        <item quantity="other">%d weitere Wörter kommen mit späteren Lektionen</item>
+    </plurals>
+    <plurals name="practise_shown">
+        <item quantity="one">Dieses Wort üben</item>
+        <item quantity="other">Diese %d Wörter üben</item>
+    </plurals>
     <plurals name="words_available">
         <item quantity="one">%d Wort kannst du schon lesen</item>
         <item quantity="other">%d Wörter kannst du schon lesen</item>

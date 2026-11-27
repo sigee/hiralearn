@@ -14,6 +14,7 @@ import hu.sigee.hiralearn.core.WordEvaluation
 import hu.sigee.hiralearn.core.WordQuestion
 import hu.sigee.hiralearn.core.WordSession
 import hu.sigee.hiralearn.core.WordSummary
+import hu.sigee.hiralearn.core.Words
 import hu.sigee.hiralearn.ui.session.AutoAdvanceTimer
 import kotlinx.coroutines.Dispatchers
 
@@ -45,7 +46,8 @@ sealed interface WordUiState {
     data class Finished(val summary: WordSummary) : WordUiState
 }
 
-class WordSessionViewModel(private val container: AppContainer) : ViewModel() {
+/** A word session: the weakest readable words, or only [wordIds] when the learner picked them in the glossary. */
+class WordSessionViewModel(private val container: AppContainer, private val wordIds: List<String> = emptyList()) : ViewModel() {
     private val _state = MutableStateFlow<WordUiState>(WordUiState.Loading)
     val state: StateFlow<WordUiState> = _state.asStateFlow()
 
@@ -62,7 +64,8 @@ class WordSessionViewModel(private val container: AppContainer) : ViewModel() {
             val strokes = withContext(Dispatchers.Default) { container.strokes }
             val types = container.questionTypesNow()
             val states = if (types.listening) container.progress.addMissingListeningCards(container.clock()) else container.progress.snapshot()
-            session = WordSession.start(states, strokes, types)
+            val chosen = wordIds.mapNotNull { Words.byId(it) }
+            session = if (wordIds.isEmpty()) WordSession.start(states, strokes, types) else WordSession.startWith(chosen, states, strokes, types)
             publish()
         }
     }
@@ -112,8 +115,8 @@ class WordSessionViewModel(private val container: AppContainer) : ViewModel() {
     companion object {
         private const val VOICE_WAIT_MS = 2_000L
 
-        fun factory(container: AppContainer): ViewModelProvider.Factory = viewModelFactory {
-            initializer { WordSessionViewModel(container) }
+        fun factory(container: AppContainer, wordIds: List<String> = emptyList()): ViewModelProvider.Factory = viewModelFactory {
+            initializer { WordSessionViewModel(container, wordIds) }
         }
     }
 }

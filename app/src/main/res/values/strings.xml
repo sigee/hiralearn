@@ -166,6 +166,19 @@
     <string name="nothing_words">Finish your first lesson, then there are words to read.</string>
     <string name="new_words">New words to read</string>
     <string name="read_them_now">Read them now</string>
+    <string name="glossary">Glossary</string>
+    <string name="glossary_hint">Tap a word to practise just that word: reading, writing and listening.</string>
+    <string name="glossary_search">Search (kana, rōmaji or meaning)</string>
+    <string name="glossary_no_match">No word matches.</string>
+    <string name="practise_word">Practise this word</string>
+    <plurals name="words_locked">
+        <item quantity="one">%d more word unlocks with later lessons</item>
+        <item quantity="other">%d more words unlock with later lessons</item>
+    </plurals>
+    <plurals name="practise_shown">
+        <item quantity="one">Practise this word</item>
+        <item quantity="other">Practise these %d words</item>
+    </plurals>
     <plurals name="words_available">
         <item quantity="one">%d word you can read</item>
         <item quantity="other">%d words you can read</item>

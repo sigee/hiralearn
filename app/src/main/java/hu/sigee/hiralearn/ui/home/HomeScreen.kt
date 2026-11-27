@@ -161,6 +161,7 @@ fun HomeScreen(
     onReview: () -> Unit,
     onPractice: () -> Unit,
     onReadWords: () -> Unit,
+    onGlossary: () -> Unit,
     onDrill: () -> Unit,
     onKana: (Kana) -> Unit,
     onKanaChart: () -> Unit,
@@ -182,6 +183,9 @@ fun HomeScreen(
                             }
                             DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
                                 DropdownMenuItem(text = { Text(stringResource(R.string.kana_chart)) }, onClick = { menuOpen = false; onKanaChart() })
+                                if (state.readableWords > 0) {
+                                    DropdownMenuItem(text = { Text(stringResource(R.string.glossary)) }, onClick = { menuOpen = false; onGlossary() })
+                                }
                                 DropdownMenuItem(text = { Text(stringResource(R.string.settings)) }, onClick = { menuOpen = false; onSettings() })
                             }
                         }
@@ -213,7 +217,7 @@ fun HomeScreen(
                 item { ReviewBand(state, onReview, onPractice) }
                 if (state.confusions.isNotEmpty()) item { ConfusionsBand(state.confusions, onDrill) }
                 item { LearnBand(state, onLearn) }
-                if (state.readableWords > 0) item { WordsBand(state, onReadWords) }
+                if (state.readableWords > 0) item { WordsBand(state, onReadWords, onGlossary) }
             }
         }
     }
@@ -297,7 +301,7 @@ private fun LearnBand(state: HomeUiState, onLearn: () -> Unit) {
 
 /** Real words to read, once a lesson is done. */
 @Composable
-private fun WordsBand(state: HomeUiState, onReadWords: () -> Unit) {
+private fun WordsBand(state: HomeUiState, onReadWords: () -> Unit, onGlossary: () -> Unit) {
     val ink = LocalInkColors.current
     Box(Modifier.fillMaxWidth().inkWash(ink.inkWash, seed = 12)) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 22.dp, vertical = 20.dp)) {
@@ -312,7 +316,10 @@ private fun WordsBand(state: HomeUiState, onReadWords: () -> Unit) {
             Spacer(Modifier.height(4.dp))
             Text(stringResource(R.string.words_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Spacer(Modifier.height(10.dp))
-            InkButton(stringResource(R.string.read_now), onReadWords, seed = 10)
+            Row(horizontalArrangement = Arrangement.spacedBy(10.dp), verticalAlignment = Alignment.CenterVertically) {
+                InkButton(stringResource(R.string.read_now), onReadWords, seed = 10)
+                InkButton(stringResource(R.string.glossary), onGlossary, seed = 13, outlined = true)
+            }
         }
     }
 }
